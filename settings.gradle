@@ -1,3 +1,4 @@
+include ':backend'
 include ':data'
 include ':app'
 rootProject.name = "Talan"
