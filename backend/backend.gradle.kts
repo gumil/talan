@@ -23,4 +23,9 @@ kotless {
 dependencies {
     implementation("io.kotless:lang:0.1.3")
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.1")
+    implementation("io.ktor:ktor-client-cio:1.3.2")
+    implementation("org.jsoup:jsoup:1.13.1")
+
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.3.72")
+    testImplementation("io.ktor:ktor-client-mock-jvm:1.3.2")
 }
