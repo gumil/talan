@@ -31,4 +31,6 @@ dependencies {
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.3.72")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.5.0")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+
 }
