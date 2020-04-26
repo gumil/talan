@@ -1,7 +1,7 @@
 package dev.gumil.talan.backend
 
-import io.ktor.client.HttpClient
-import io.ktor.client.request.get
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.parser.Parser
@@ -10,12 +10,20 @@ import org.jsoup.select.Elements
 private const val URL = "https://us2.campaign-archive.com/feed?u=887caf4f48db76fd91e20a06d&id=4eb677ad19"
 
 internal class AndroidWeeklyApiImpl(
-    private val httpClient: HttpClient
+    private val httpClient: OkHttpClient,
+    private val url: String = URL
 ): AndroidWeeklyApi {
-    override suspend fun getIssues(): List<Issue> {
-        val httpResponse = httpClient.use { client ->
-            client.get<String>(URL)
-        }
+    override fun getIssues(): List<Issue> {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        val httpResponse = httpClient
+            .newCall(request)
+            .execute()
+            .body
+            ?.string()
+
         val doc = Jsoup.parse(httpResponse, "", Parser.xmlParser())
         return doc.child(0)
             .getElementsByTag("item")

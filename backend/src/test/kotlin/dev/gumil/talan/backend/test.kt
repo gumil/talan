@@ -1,5 +1,6 @@
 package dev.gumil.talan.backend
 
+import okhttp3.mockwebserver.MockResponse
 import java.io.ByteArrayOutputStream
 
 internal fun Any.readFromFile(file: String): String {
@@ -12,4 +13,12 @@ internal fun Any.readFromFile(file: String): String {
         length = inputStream.read(buffer)
     }
     return result.toString("UTF-8")
+}
+
+internal fun createMockResponse(body: String): MockResponse {
+    return MockResponse().apply {
+        setResponseCode(200)
+        setBody(body)
+        addHeader("Content-type: application/json")
+    }
 }

@@ -1,16 +1,15 @@
 package dev.gumil.talan.backend
 
+import com.squareup.moshi.Moshi
+import io.kotless.MimeType
 import io.kotless.dsl.lang.http.Get
-import kotlinx.html.*
-import kotlinx.html.stream.createHTML
 
-@Get("/")
-fun gettingStartedPage() = html {
-    body {
-        +"Hello world!"
-    }
-}
+private val androidWeeklyApi = Factory.androidWeeklyApi()
+private val moshi = Moshi.Builder().build()
 
-fun html(body: TagConsumer<String>.() -> Unit): String {
-    return createHTML().apply(body).finalize()
+@Get("/", MimeType.JSON)
+fun gettingStartedPage(): String {
+    val issues = androidWeeklyApi.getIssues()
+    val jsonAdapter = moshi.adapter(Response::class.java)
+    return jsonAdapter.toJson(Response(issues))
 }

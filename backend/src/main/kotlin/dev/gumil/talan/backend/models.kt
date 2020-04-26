@@ -1,5 +1,13 @@
 package dev.gumil.talan.backend
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class Response(
+    val issues: List<Issue>
+)
+
+@JsonClass(generateAdapter = true)
 data class Issue(
     val title: String,
     val link: String,
@@ -7,6 +15,7 @@ data class Issue(
     val publishDate: String
 )
 
+@JsonClass(generateAdapter = true)
 data class IssueEntry(
     val title: String,
     val description: String,
