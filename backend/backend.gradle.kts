@@ -14,6 +14,15 @@ java {
 }
 
 kotless {
+    config {
+        bucket = "talaan"
+
+        terraform {
+            profile = "default"
+            region = "eu-central-1"
+        }
+    }
+
     extensions {
         local {
             useAWSEmulation = true
