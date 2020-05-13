@@ -1,5 +1,8 @@
-package dev.gumil.talan.backend
+package dev.gumil.talan.backend.andweekly
 
+import dev.gumil.talan.backend.EntryType
+import dev.gumil.talan.backend.Issue
+import dev.gumil.talan.backend.IssueEntry
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
@@ -47,7 +50,9 @@ internal class AndroidWeeklyApiImpl(
             .mapNotNull { item ->
                 val title = item.getElementsByTag("h2")
                 if (title.size > 0) {
-                    issueType = EntryType.from(title.first().text())
+                    issueType = EntryType.from(
+                        title.first().text()
+                    )
                     return@mapNotNull null
                 }
 

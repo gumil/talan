@@ -1,5 +1,9 @@
-package dev.gumil.talan.backend
+package dev.gumil.talan.backend.andweekly
 
+import dev.gumil.talan.backend.EntryType
+import dev.gumil.talan.backend.IssueEntry
+import dev.gumil.talan.backend.createMockResponse
+import dev.gumil.talan.backend.readFromFile
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
@@ -10,7 +14,10 @@ internal class AndroidWeeklyApiImplTest {
 
     private val client = OkHttpClient()
 
-    private val api = AndroidWeeklyApiImpl(client, server.url("/").toString())
+    private val api = AndroidWeeklyApiImpl(
+        client,
+        server.url("/").toString()
+    )
 
     @Test
     fun `successfully get issues`() {
@@ -68,7 +75,8 @@ internal class AndroidWeeklyApiImplTest {
                 image = "https://androidweekly.net/system/images/5e9bbb/603c93bc382900b46a/square_Bildschirmfoto_2020-04-19_um_12.46.16.png",
                 link = "https://www.youtube.com/watch?v=b3RXWiBxrz8&feature=youtu.be",
                 host = "https://www.youtube.com/watch?v=b3RXWiBxrz8&feature=youtu.be",
-                isSponsored = false, type = EntryType.VIDEO
+                isSponsored = false,
+                type = EntryType.VIDEO
             )
         )
 

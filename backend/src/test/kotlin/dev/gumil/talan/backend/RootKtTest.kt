@@ -2,6 +2,7 @@ package dev.gumil.talan.backend
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import dev.gumil.talan.backend.andweekly.AndroidWeeklyApi
 import org.junit.Test
 import kotlin.test.assertEquals
 

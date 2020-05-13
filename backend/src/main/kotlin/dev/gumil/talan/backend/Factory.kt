@@ -1,6 +1,8 @@
 package dev.gumil.talan.backend
 
 import com.squareup.moshi.Moshi
+import dev.gumil.talan.backend.andweekly.AndroidWeeklyApi
+import dev.gumil.talan.backend.andweekly.AndroidWeeklyApiImpl
 import okhttp3.OkHttpClient
 
 object Factory {
