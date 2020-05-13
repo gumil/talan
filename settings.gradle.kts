@@ -1,3 +1,4 @@
+include(":entity")
 include(":backend")
 include(":app")
 rootProject.name = "Talan"
