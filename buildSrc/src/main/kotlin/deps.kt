@@ -1,14 +1,11 @@
-internal object PluginVersions {
-    const val kotlin = "1.3.72"
-}
-
 internal object Versions {
+    const val kotlin = "1.3.72"
     const val jacoco = "0.8.4"
     const val mockito = "2.2.0"
 }
 
 internal object Plugins {
-    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${PluginVersions.kotlin}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 }
 
 internal object Common {

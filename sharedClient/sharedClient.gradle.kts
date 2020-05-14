@@ -1,5 +1,7 @@
 plugins {
-    kotlin("multiplatform")
+    SharedClient.plugins.forEach { (n, version) ->
+        version?.let { id(n) version it } ?: id(n)
+    }
 }
 
 apply<plugin.MultiplatformConfigurationPlugin>()
@@ -9,39 +11,43 @@ kotlin {
         @Suppress("UNUSED_VARIABLE")
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
+                SharedClient.commonMain.forEach(::implementation)
             }
         }
 
         @Suppress("UNUSED_VARIABLE")
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+                SharedClient.commonTest.forEach(::implementation)
             }
         }
 
         jvm().compilations["main"].defaultSourceSet {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
+                SharedClient.jvmMain.forEach(::implementation)
             }
         }
 
         jvm().compilations["test"].defaultSourceSet {
             dependencies {
-                implementation(kotlin("test-junit"))
+                SharedClient.jvmTest.forEach(::implementation)
             }
         }
 
         js().compilations["main"].defaultSourceSet {
             dependencies {
-                implementation(kotlin("stdlib-js"))
+                SharedClient.jsMain.forEach(::implementation)
             }
         }
+
         js().compilations["test"].defaultSourceSet {
             dependencies {
-                implementation(kotlin("test-js"))
+                SharedClient.jsTest.forEach(::implementation)
             }
+        }
+
+        sourceSets["iosMain"].dependencies {
+            SharedClient.nativeMain.forEach(::implementation)
         }
     }
 }

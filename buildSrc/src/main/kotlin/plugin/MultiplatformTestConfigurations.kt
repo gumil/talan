@@ -19,7 +19,7 @@ fun Project.configureMppTest() {
     configureJsTest(this)
 
     tasks.register("test") {
-        dependsOn("jvmTest", "iosTest", "jsTest")
+        dependsOn("jvmTest", "iosSimulatorTest", "jsTest")
         group = JavaBasePlugin.VERIFICATION_GROUP
     }
 
@@ -33,7 +33,7 @@ fun Project.configureMppTest() {
 }
 
 private fun configureIosTest(project: Project) {
-    project.tasks.register("iosTest") {
+    project.tasks.register("iosSimulatorTest") {
         group = JavaBasePlugin.VERIFICATION_GROUP
         dependsOn("linkIosX64")
         val device = project.findProperty("iosDevice")?.toString() ?: "iPhone 8"

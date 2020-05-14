@@ -23,7 +23,7 @@ object Backend {
         "com.squareup.moshi:moshi-kotlin-codegen:${moshi}"
     )
     val testImplementations = listOf(
-        "org.jetbrains.kotlin:kotlin-test-junit:${PluginVersions.kotlin}",
+        "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}",
         "com.squareup.okhttp3:mockwebserver:${okhttp}",
         Common.mockito
     )

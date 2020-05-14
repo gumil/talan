@@ -30,8 +30,13 @@ class MultiplatformConfigurationPlugin : Plugin<Project> {
                     }
                 }
             }
-            iosX64()
-            iosArm64()
+
+            val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+            if (onPhone) {
+                iosArm64("ios")
+            } else {
+                iosX64("ios")
+            }
         }
     }
 }
