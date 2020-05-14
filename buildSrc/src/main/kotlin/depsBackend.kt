@@ -3,28 +3,25 @@
  * working correctly with kotless.
  */
 object Backend {
-    private const val kotless = "0.1.3"
+    private const val kotless = "0.1.5"
     private const val jsoup = "1.13.1"
-    private const val okhttp = "4.6.0"
-    private const val moshi = "1.9.2"
+    private const val ktor = "1.3.2"
+    private const val serialization = "0.20.0"
 
     val plugins = listOf(
         "org.jetbrains.kotlin.jvm" to null,
-        "org.jetbrains.kotlin.kapt" to null,
+        "org.jetbrains.kotlin.plugin.serialization" to Versions.kotlin,
         "io.kotless" to kotless
     )
     val implementations = listOf(
-        "io.kotless:lang:${kotless}",
-        "org.jsoup:jsoup:${jsoup}",
-        "com.squareup.okhttp3:okhttp:${okhttp}",
-        "com.squareup.moshi:moshi:${moshi}"
-    )
-    val kapt = listOf(
-        "com.squareup.moshi:moshi-kotlin-codegen:${moshi}"
+        "io.kotless:lang:$kotless",
+        "org.jsoup:jsoup:$jsoup",
+        "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization",
+        "io.ktor:ktor-client-cio:$ktor"
     )
     val testImplementations = listOf(
         "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}",
-        "com.squareup.okhttp3:mockwebserver:${okhttp}",
+        "io.ktor:ktor-client-mock-jvm:$ktor",
         Common.mockito
     )
 }

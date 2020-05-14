@@ -2,27 +2,28 @@ package dev.gumil.talan.backend.andweekly
 
 import dev.gumil.talan.backend.EntryType
 import dev.gumil.talan.backend.IssueEntry
-import dev.gumil.talan.backend.createMockResponse
 import dev.gumil.talan.backend.readFromFile
-import okhttp3.OkHttpClient
-import okhttp3.mockwebserver.MockWebServer
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
 
 internal class AndroidWeeklyApiImplTest {
-    private val server = MockWebServer().apply { start() }
 
-    private val client = OkHttpClient()
+    private val client = HttpClient(MockEngine) {
+        engine {
+            addHandler {
+                respond(readFromFile("test-payload.xml"))
+            }
+        }
+    }
 
-    private val api = AndroidWeeklyApiImpl(
-        client,
-        server.url("/").toString()
-    )
+    private val api = AndroidWeeklyApiImpl(client)
 
     @Test
-    fun `successfully get issues`() {
-        server.enqueue(createMockResponse(readFromFile("test-payload.xml")))
-
+    fun `successfully get issues`() = runBlocking {
         val expected = listOf(
             IssueEntry(
                 title = "Android Weekly on Patreon",

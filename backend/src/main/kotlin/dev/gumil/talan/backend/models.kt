@@ -1,13 +1,13 @@
 package dev.gumil.talan.backend
 
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Response(
     val issues: List<Issue>
 )
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Issue(
     val title: String,
     val link: String,
@@ -15,7 +15,7 @@ data class Issue(
     val publishDate: String
 )
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class IssueEntry(
     val title: String,
     val description: String,

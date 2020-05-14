@@ -3,13 +3,14 @@ package dev.gumil.talan.backend
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import dev.gumil.talan.backend.andweekly.AndroidWeeklyApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
 
 internal class RootKtTest {
 
     @Test
-    fun `androidWeeklyJson returns success json`() {
+    fun `androidWeeklyJson returns success json`() = runBlocking {
         val expected = readFromFile("expected.json")
 
         val api = mock<AndroidWeeklyApi>()
@@ -59,7 +60,7 @@ internal class RootKtTest {
 
         whenever(api.getIssues()).thenReturn(issues)
 
-        val androidWeeklyJson = Factory.androidWeeklyJson(api, Factory.moshi())
+        val androidWeeklyJson = Factory.androidWeeklyJson(api)
 
         assertEquals(expected, androidWeeklyJson)
     }

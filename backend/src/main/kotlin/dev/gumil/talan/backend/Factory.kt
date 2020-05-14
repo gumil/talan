@@ -1,26 +1,24 @@
 package dev.gumil.talan.backend
 
-import com.squareup.moshi.Moshi
 import dev.gumil.talan.backend.andweekly.AndroidWeeklyApi
 import dev.gumil.talan.backend.andweekly.AndroidWeeklyApiImpl
-import okhttp3.OkHttpClient
+import io.ktor.client.HttpClient
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 object Factory {
-    fun httpClient(): OkHttpClient {
-        return OkHttpClient()
+    fun httpClient(): HttpClient {
+        return HttpClient()
     }
 
     fun androidWeeklyApi(): AndroidWeeklyApi {
         return AndroidWeeklyApiImpl(httpClient())
     }
 
-    fun moshi(): Moshi {
-        return Moshi.Builder().build()
-    }
-
-    fun androidWeeklyJson(androidWeeklyApi: AndroidWeeklyApi, moshi: Moshi): String {
+    suspend fun androidWeeklyJson(androidWeeklyApi: AndroidWeeklyApi): String {
         val issues = androidWeeklyApi.getIssues()
-        val jsonAdapter = moshi.adapter(Response::class.java)
-        return jsonAdapter.toJson(Response(issues))
+        val serializer = Response.serializer()
+        val json = Json(JsonConfiguration.Stable)
+        return json.stringify(serializer, Response(issues))
     }
 }

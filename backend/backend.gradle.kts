@@ -32,6 +32,5 @@ kotless {
 
 dependencies {
     Backend.implementations.forEach(::implementation)
-    Backend.kapt.forEach(::kapt)
     Backend.testImplementations.forEach(::testImplementation)
 }
