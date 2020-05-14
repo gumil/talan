@@ -6,3 +6,5 @@ rootProject.name = "Talan"
 rootProject.children.forEach {
     it.buildFileName = "${it.name}.gradle.kts"
 }
+
+enableFeaturePreview("GRADLE_METADATA")
