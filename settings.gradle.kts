@@ -1,4 +1,4 @@
-include(":entity")
+include(":sharedClient")
 include(":backend")
 include(":app")
 rootProject.name = "Talan"
