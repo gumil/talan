@@ -1,0 +1,37 @@
+package dev.gumil.talan.network
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Response(
+    val issues: List<Issue>
+)
+
+@Serializable
+data class Issue(
+    val title: String,
+    val link: String,
+    val entries: List<IssueEntry>,
+    val publishDate: String
+)
+
+@Serializable
+data class IssueEntry(
+    val title: String,
+    val description: String,
+    val image: String,
+    val link: String,
+    val host: String,
+    val isSponsored: Boolean,
+    val type: EntryType
+)
+
+enum class EntryType{
+    ARTICLE,
+    JOB,
+    VIDEO,
+    LIBRARY,
+    PATREON,
+    UNKNOWN,
+    SPONSORED
+}
