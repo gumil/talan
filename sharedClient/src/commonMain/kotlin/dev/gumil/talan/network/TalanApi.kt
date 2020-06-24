@@ -1,5 +1,5 @@
 package dev.gumil.talan.network
 
 interface TalanApi {
-    fun getAndroidWeeklyIssues()
+    suspend fun getAndroidWeeklyIssues(): List<Issue>
 }
