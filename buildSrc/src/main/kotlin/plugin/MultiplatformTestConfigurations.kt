@@ -61,15 +61,13 @@ private fun configureJsTest(project: Project) {
         nodeModulesDir = project.file("${project.buildDir}/npm")
     }
 
-    val installMocha = "installMocha"
-    val populateNodeModules = "populateNodeModules"
+    val installDependencies = "installDependencies"
+    val populateNodeModules = "populateNodeModulesForTest"
     val runMocha = "runMocha"
 
-    project.tasks.register<NpmTask>(installMocha)
-    project.tasks.getByName(installMocha) {
-        (this as NpmTask).apply {
-            setArgs(listOf("install", "mocha@6.0.0"))
-        }
+    project.tasks.register<NpmTask>(installDependencies) {
+        // text-encoding is a dependency from kotlinx-io
+        setArgs(listOf("install", "mocha@6.0.0", "text-encoding@0.7.0"))
     }
 
     val jsCompilations =
@@ -92,7 +90,7 @@ private fun configureJsTest(project: Project) {
     }
 
     project.tasks.register<NodeTask>(runMocha) {
-        dependsOn("compileTestKotlinJs", installMocha, populateNodeModules)
+        dependsOn("compileTestKotlinJs", installDependencies, populateNodeModules)
         script = project.file("${project.buildDir}/npm/node_modules/.bin/mocha")
         setArgs(
             listOf(
