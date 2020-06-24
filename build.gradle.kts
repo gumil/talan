@@ -6,6 +6,6 @@ allprojects {
     }
 }
 
-val clean by tasks.creating(Delete::class) {
+val cleanAll by tasks.creating(Delete::class) {
     delete(rootProject.buildDir)
 }
