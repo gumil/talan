@@ -49,5 +49,9 @@ kotlin {
         sourceSets["iosMain"].dependencies {
             SharedClient.nativeMain.forEach(::implementation)
         }
+
+        sourceSets["iosTest"].dependencies {
+            SharedClient.nativeTest.forEach(::implementation)
+        }
     }
 }
