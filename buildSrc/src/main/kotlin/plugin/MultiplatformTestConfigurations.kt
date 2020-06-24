@@ -12,6 +12,7 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.register
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetWithSimulatorTests
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 fun Project.configureMppTest() {
@@ -35,11 +36,15 @@ fun Project.configureMppTest() {
 private fun configureIosTest(project: Project) {
     project.tasks.register("iosSimulatorTest") {
         group = JavaBasePlugin.VERIFICATION_GROUP
-        dependsOn("linkIosX64")
+        dependsOn("linkIos")
         val device = project.findProperty("iosDevice")?.toString() ?: "iPhone 8"
 
         doLast {
-            val iosX64 = project.extensions.getByType<KotlinMultiplatformExtension>().iosX64()
+            val iosX64 = project.extensions
+                .getByType<KotlinMultiplatformExtension>()
+                .targets
+                .filterIsInstance<KotlinNativeTargetWithSimulatorTests>()
+                .first()
             val binary = iosX64.binaries.getTest(NativeBuildType.DEBUG).outputFile
             project.exec {
                 commandLine("xcrun", "simctl", "spawn", device, binary.absolutePath)
