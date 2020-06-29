@@ -1,6 +1,7 @@
 object SharedClient {
     private const val serialization = "0.20.0"
     private const val ktor = "1.3.2"
+    private const val kaskade = "0.4.0"
 
     val plugins = listOf(
         "org.jetbrains.kotlin.multiplatform" to null,
@@ -14,6 +15,8 @@ object SharedClient {
         "io.ktor:ktor-client-json:$ktor",
         "io.ktor:ktor-client-logging:$ktor",
         "io.ktor:ktor-client-serialization:$ktor",
+        "dev.gumil.kaskade:core:$kaskade",
+        "dev.gumil.kaskade:coroutines:$kaskade",
         Coroutines.common
     )
 
