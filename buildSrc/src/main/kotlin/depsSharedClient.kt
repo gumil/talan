@@ -15,8 +15,8 @@ object SharedClient {
         "io.ktor:ktor-client-json:$ktor",
         "io.ktor:ktor-client-logging:$ktor",
         "io.ktor:ktor-client-serialization:$ktor",
-        "dev.gumil.kaskade:core:$kaskade",
-        "dev.gumil.kaskade:coroutines:$kaskade",
+        Kaskade.core,
+        Kaskade.coroutines,
         Coroutines.common
     )
 
