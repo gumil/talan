@@ -5,7 +5,7 @@ import dev.gumil.kaskade.SingleEvent
 import dev.gumil.kaskade.State
 import dev.gumil.talan.network.IssueEntry
 
-internal sealed class IssueListState : State {
+sealed class IssueListState : State {
 
     data class Screen(
         val issues: List<IssueEntry> = emptyList(),
@@ -25,7 +25,7 @@ internal sealed class IssueListState : State {
     }
 }
 
-internal sealed class IssueListAction : Action {
+sealed class IssueListAction : Action {
 
     object Refresh : IssueListAction()
 
