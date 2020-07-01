@@ -34,20 +34,20 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "0.1.0-dev09"
+        kotlinCompilerExtensionVersion = "0.1.0-dev14"
     }
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
-    implementation("androidx.core:core-ktx:1.2.0")
+    implementation("androidx.core:core-ktx:1.3.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("com.google.android.material:material:1.1.0")
-    implementation("androidx.ui:ui-framework:0.1.0-dev09")
-    implementation("androidx.ui:ui-layout:0.1.0-dev09")
-    implementation("androidx.ui:ui-material:0.1.0-dev09")
-    implementation("androidx.ui:ui-tooling:0.1.0-dev09")
-    testImplementation("junit:junit:4.12")
+    implementation("androidx.ui:ui-framework:0.1.0-dev14")
+    implementation("androidx.ui:ui-layout:0.1.0-dev14")
+    implementation("androidx.ui:ui-material:0.1.0-dev14")
+    implementation("androidx.ui:ui-tooling:0.1.0-dev14")
+    testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 }
