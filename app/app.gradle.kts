@@ -35,15 +35,18 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "0.1.0-dev14"
+        kotlinCompilerVersion = "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
     }
 }
 
 dependencies {
+    implementation(project(":sharedClient"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
+    implementation("dev.gumil.kaskade:core:0.4.0")
     implementation("androidx.core:core-ktx:1.3.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("com.google.android.material:material:1.1.0")
-    implementation("androidx.ui:ui-framework:0.1.0-dev14")
+    implementation("androidx.ui:ui-core:0.1.0-dev14")
     implementation("androidx.ui:ui-layout:0.1.0-dev14")
     implementation("androidx.ui:ui-material:0.1.0-dev14")
     implementation("androidx.ui:ui-tooling:0.1.0-dev14")
