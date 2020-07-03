@@ -1,33 +1,21 @@
 package dev.gumil.talan
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.setContent
-import androidx.ui.foundation.Text
-import androidx.ui.material.MaterialTheme
-import androidx.ui.tooling.preview.Preview
+import com.nhaarman.acorn.android.navigation.AbstractNavigatorProvider
+import com.nhaarman.acorn.android.navigation.NavigatorProvider
+import com.nhaarman.acorn.state.NavigatorState
+import dev.gumil.talan.acorn.AcornComposeActivity
+import dev.gumil.talan.acorn.ComposeContainerFactory
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MaterialTheme {
-                Greeting("Android")
+internal class MainActivity : AcornComposeActivity() {
+    override fun provideNavigatorProvider(): NavigatorProvider {
+        return object : AbstractNavigatorProvider<MainNavigator>() {
+            override fun createNavigator(savedState: NavigatorState?): MainNavigator {
+                return MainNavigator(savedState)
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    MaterialTheme {
-        Greeting("Android")
+    override fun provideComposeContainerFactory(): ComposeContainerFactory {
+        return ComposeContainerFactoryImpl()
     }
 }
