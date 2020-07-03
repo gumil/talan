@@ -37,6 +37,9 @@ android {
         kotlinCompilerExtensionVersion = "0.1.0-dev14"
         kotlinCompilerVersion = "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
     }
+    packagingOptions {
+        pickFirst("META-INF/*")
+    }
 }
 
 dependencies {
@@ -51,6 +54,7 @@ dependencies {
     implementation("androidx.ui:ui-layout:0.1.0-dev14")
     implementation("androidx.ui:ui-material:0.1.0-dev14")
     implementation("androidx.ui:ui-tooling:0.1.0-dev14")
+    implementation("com.nhaarman.acorn.ext:acorn-android:1.2.4")
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
