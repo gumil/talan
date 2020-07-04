@@ -38,7 +38,15 @@ android {
         kotlinCompilerVersion = "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
     }
     packagingOptions {
-        pickFirst("META-INF/*")
+        pickFirst("META-INF/ktor-client-serialization.kotlin_module")
+        pickFirst("META-INF/ktor-client-json.kotlin_module")
+        pickFirst("META-INF/ktor-client-core.kotlin_module")
+        pickFirst("META-INF/ktor-client-logging.kotlin_module")
+        pickFirst("META-INF/ktor-io.kotlin_module")
+        pickFirst("META-INF/ktor-utils.kotlin_module")
+        pickFirst("META-INF/ktor-http.kotlin_module")
+        pickFirst("META-INF/ktor-http-cio.kotlin_module")
+        pickFirst("META-INF/kotlinx-serialization-runtime.kotlin_module")
     }
 }
 
