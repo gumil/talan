@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.*
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-internal class AndroidWeeklyViewModel(
+class AndroidWeeklyViewModel(
     private val talanApi: TalanApi,
     private val dispatcherProvider: DispatcherProvider
 ) {
