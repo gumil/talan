@@ -16,14 +16,13 @@ import kotlinx.coroutines.flow.*
 @ExperimentalCoroutinesApi
 class AndroidWeeklyViewModel(
     private val talanApi: TalanApi,
-    private val dispatcherProvider: DispatcherProvider
+    private val dispatcherProvider: DispatcherProvider,
+    initialState: IssueListState = IssueListState.Screen()
 ) {
 
     private val job = Job()
 
     private val uiScope = CoroutineScope(dispatcherProvider.main() + job)
-
-    private val initialState = IssueListState.Screen()
 
     private val kaskade = Kaskade.create<IssueListAction, IssueListState>(initialState) {
         coroutines(uiScope) {
