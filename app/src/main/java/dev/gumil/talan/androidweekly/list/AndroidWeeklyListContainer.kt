@@ -16,20 +16,20 @@ import androidx.ui.material.TopAppBar
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import dev.gumil.talan.acorn.ComposeContainer
-import dev.gumil.talan.network.EntryType
-import dev.gumil.talan.network.IssueEntry
+import dev.gumil.talan.androidweekly.EntryTypeUi
+import dev.gumil.talan.androidweekly.IssueEntryUi
 
 internal class AndroidWeeklyListContainer: ComposeContainer {
 
     val items = (0..20).map {
-        IssueEntry(
+        IssueEntryUi(
             "title $it",
             "description $it",
             "image $it",
             "link $it",
             "host $it",
             false,
-            EntryType.ARTICLE
+            EntryTypeUi.ARTICLE
         )
     }
 
@@ -57,7 +57,7 @@ internal class AndroidWeeklyListContainer: ComposeContainer {
     }
 
     @Composable
-    private fun listItem(item: IssueEntry) {
+    private fun listItem(item: IssueEntryUi) {
         Card(
             shape = RoundedCornerShape(4.dp), color = Color.White,
             modifier = (Modifier.fillMaxWidth() + Modifier.padding(8.dp))
