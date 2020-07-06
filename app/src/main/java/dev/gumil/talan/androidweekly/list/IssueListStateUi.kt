@@ -3,6 +3,7 @@ package dev.gumil.talan.androidweekly.list
 import android.os.Parcelable
 import dev.gumil.kaskade.SingleEvent
 import dev.gumil.talan.androidweekly.IssueEntryUi
+import dev.gumil.talan.androidweekly.mapToModel
 import dev.gumil.talan.androidweekly.mapToUiModel
 import kotlinx.android.parcel.Parcelize
 
@@ -44,5 +45,23 @@ fun IssueListState.Mode.mapToUiModel(): IssueListStateUi.Mode {
     return when(this) {
         IssueListState.Mode.LOADING -> IssueListStateUi.Mode.LOADING
         IssueListState.Mode.IDLE -> IssueListStateUi.Mode.IDLE
+    }
+}
+
+fun IssueListStateUi.mapToModel(): IssueListState {
+    return when(this) {
+        is IssueListStateUi.Screen -> IssueListState.Screen(
+            issues.map { it.mapToModel() },
+            loadingMode.mapToModel()
+        )
+        is IssueListStateUi.Error -> IssueListState.Error(exception)
+        is IssueListStateUi.GoToDetail -> IssueListState.GoToDetail(issue.mapToModel())
+    }
+}
+
+fun IssueListStateUi.Mode.mapToModel(): IssueListState.Mode {
+    return when(this) {
+        IssueListStateUi.Mode.LOADING -> IssueListState.Mode.LOADING
+        IssueListStateUi.Mode.IDLE -> IssueListState.Mode.IDLE
     }
 }

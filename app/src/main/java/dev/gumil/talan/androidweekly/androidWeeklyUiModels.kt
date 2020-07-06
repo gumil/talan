@@ -49,3 +49,27 @@ fun EntryType.mapToUiModel(): EntryTypeUi {
         EntryType.SPONSORED -> EntryTypeUi.SPONSORED
     }
 }
+
+fun IssueEntryUi.mapToModel(): IssueEntry {
+    return IssueEntry(
+        title,
+        description,
+        image,
+        link,
+        host,
+        isSponsored,
+        type.mapToModel()
+    )
+}
+
+fun EntryTypeUi.mapToModel(): EntryType {
+    return when(this) {
+        EntryTypeUi.ARTICLE -> EntryType.ARTICLE
+        EntryTypeUi.JOB -> EntryType.JOB
+        EntryTypeUi.VIDEO -> EntryType.VIDEO
+        EntryTypeUi.LIBRARY -> EntryType.LIBRARY
+        EntryTypeUi.PATREON -> EntryType.PATREON
+        EntryTypeUi.UNKNOWN -> EntryType.UNKNOWN
+        EntryTypeUi.SPONSORED -> EntryType.SPONSORED
+    }
+}
