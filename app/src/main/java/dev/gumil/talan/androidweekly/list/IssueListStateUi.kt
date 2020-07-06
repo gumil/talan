@@ -12,13 +12,9 @@ sealed class IssueListStateUi {
     @Parcelize
     data class Screen(
         val issues: List<IssueEntryUi> = emptyList(),
-        val loadingMode: Mode = Mode.IDLE
+        val loadingMode: Mode = Mode.IDLE,
+        val exception: Throwable? = null
     ) : IssueListStateUi(), Parcelable
-
-    @Parcelize
-    data class Error(
-        val exception: Throwable
-    ) : IssueListStateUi(), SingleEvent, Parcelable
 
     @Parcelize
     data class GoToDetail(
@@ -30,13 +26,22 @@ sealed class IssueListStateUi {
     }
 }
 
-fun IssueListState.mapToUiModel(): IssueListStateUi {
+fun IssueListState.mapToUiModel(previousState: IssueListState? = null): IssueListStateUi {
     return when(this) {
         is IssueListState.Screen -> IssueListStateUi.Screen(
             issues.map { it.mapToUiModel() },
             loadingMode.mapToUiModel()
         )
-        is IssueListState.Error -> IssueListStateUi.Error(exception)
+        is IssueListState.Error -> {
+            if (previousState is IssueListState.Screen) {
+                IssueListStateUi.Screen(
+                    previousState.issues.map { it.mapToUiModel() },
+                    previousState.loadingMode.mapToUiModel(),
+                    exception
+                )
+            } else error("Mapping not supported")
+
+        }
         is IssueListState.GoToDetail -> IssueListStateUi.GoToDetail(issue.mapToUiModel())
     }
 }
@@ -54,7 +59,6 @@ fun IssueListStateUi.mapToModel(): IssueListState {
             issues.map { it.mapToModel() },
             loadingMode.mapToModel()
         )
-        is IssueListStateUi.Error -> IssueListState.Error(exception)
         is IssueListStateUi.GoToDetail -> IssueListState.GoToDetail(issue.mapToModel())
     }
 }

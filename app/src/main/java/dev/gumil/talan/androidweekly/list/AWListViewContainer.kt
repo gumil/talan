@@ -2,15 +2,18 @@ package dev.gumil.talan.androidweekly.list
 
 import androidx.compose.Composable
 import androidx.compose.MutableState
-import androidx.compose.State
 import androidx.compose.mutableStateOf
+import androidx.compose.stateFor
+import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Text
+import androidx.ui.foundation.clickable
 import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
+import androidx.ui.layout.Stack
 import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.padding
 import androidx.ui.layout.preferredSize
@@ -23,6 +26,8 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import dev.gumil.talan.androidweekly.EntryTypeUi
 import dev.gumil.talan.androidweekly.IssueEntryUi
+import dev.gumil.talan.androidweekly.mapToModel
+import dev.gumil.talan.ui.ErrorSnackbar
 import dev.gumil.talan.ui.SwipeToRefreshLayout
 
 internal class AWListViewContainer: AWListContainer {
@@ -37,16 +42,24 @@ internal class AWListViewContainer: AWListContainer {
     override fun render() {
         return when (val state = state.value) {
             is IssueListStateUi.Screen -> screen(state)
-            is IssueListStateUi.Error -> TODO()
             is IssueListStateUi.GoToDetail -> TODO()
         }
     }
 
     @Composable
     private fun screen(state: IssueListStateUi.Screen) {
-        Column {
-            toolbar()
-            content(state)
+        val (showSnackbarError, updateShowSnackbarError) = stateFor(state) { state.exception != null }
+
+        Stack {
+            Column {
+                toolbar()
+                content(state)
+            }
+            ErrorSnackbar(
+                showError = showSnackbarError,
+                modifier = Modifier.gravity(Alignment.BottomCenter),
+                onDismiss = { updateShowSnackbarError(false) }
+            )
         }
     }
 
@@ -79,6 +92,9 @@ internal class AWListViewContainer: AWListContainer {
         Card(
             shape = RoundedCornerShape(4.dp), color = Color.White,
             modifier = (Modifier.fillMaxWidth() + Modifier.padding(8.dp))
+                .clickable(onClick = {
+                    actions(IssueListAction.OnItemClick(item.mapToModel()))
+                })
         ) {
             ListItem(
                 text = {

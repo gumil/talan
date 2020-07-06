@@ -1,7 +1,5 @@
 package dev.gumil.talan.androidweekly.list
 
-import androidx.compose.MutableState
-import androidx.compose.mutableStateOf
 import com.nhaarman.acorn.presentation.SavableScene
 import com.nhaarman.acorn.presentation.Scene
 import com.nhaarman.acorn.state.SceneState
@@ -11,7 +9,7 @@ import dev.gumil.talan.util.DispatcherProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.scanReduce
 
 internal class AWListScene(
     sceneState: SceneState?,
@@ -39,7 +37,11 @@ internal class AWListScene(
 
     override fun attach(v: AWListContainer) {
         viewModel.state
-            .onEach { v.state.value = it.mapToUiModel() }
+            .scanReduce { accumulator, value ->
+                v.state.value = value.mapToUiModel(accumulator)
+                if (value is IssueListState.Screen) value
+                else accumulator
+            }
             .launchIn(sceneScope)
 
         v.actions = { viewModel.dispatch(it) }
