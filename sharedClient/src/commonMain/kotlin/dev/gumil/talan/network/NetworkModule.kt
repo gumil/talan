@@ -34,4 +34,8 @@ object NetworkModule {
             }
         }
     }
+
+    fun provideTalanApi(): TalanApi {
+        return TalanApiImpl(provideHttpClient())
+    }
 }

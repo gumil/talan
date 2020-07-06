@@ -7,7 +7,7 @@ internal class TalanApiImpl(
     private val httpClient: HttpClient
 ): TalanApi {
 
-    private val url = "nl5zusucx5.execute-api.eu-central-1.amazonaws.com/1/androidweekly"
+    private val url = "https://nl5zusucx5.execute-api.eu-central-1.amazonaws.com/1/androidweekly"
 
     override suspend fun getAndroidWeeklyIssues(): List<Issue> {
         return httpClient.get<Response>(url).issues
