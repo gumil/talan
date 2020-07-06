@@ -16,6 +16,6 @@ internal class MainActivity : AcornComposeActivity() {
     }
 
     override fun provideComposeContainerFactory(): ComposeContainerFactory {
-        return ComposeContainerFactoryImpl()
+        return MainContainerFactory()
     }
 }
