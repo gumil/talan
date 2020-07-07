@@ -6,6 +6,7 @@ import dev.gumil.kaskade.coroutines.coroutines
 import dev.gumil.kaskade.coroutines.stateDamFlow
 import dev.gumil.talan.network.TalanApi
 import dev.gumil.talan.util.DispatcherProvider
+import dev.gumil.talan.util.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -18,7 +19,7 @@ class AndroidWeeklyViewModel(
     private val talanApi: TalanApi,
     private val dispatcherProvider: DispatcherProvider,
     initialState: IssueListState = IssueListState.Screen()
-) {
+): ViewModel<IssueListAction, IssueListState> {
 
     private val job = Job()
 
@@ -36,15 +37,15 @@ class AndroidWeeklyViewModel(
         }
     }
 
-    val state: StateFlow<IssueListState> get() = _state
+    override val state: StateFlow<IssueListState> get() = _state
 
     private val _state = kaskade.stateDamFlow()
 
-    fun dispatch(action: IssueListAction) {
+    override fun dispatch(action: IssueListAction) {
         kaskade.dispatch(action)
     }
 
-    fun clear() {
+    override fun clear() {
         kaskade.unsubscribe()
         _state.clear()
         job.cancel()
