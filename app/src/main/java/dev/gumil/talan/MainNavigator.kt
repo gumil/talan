@@ -15,7 +15,7 @@ internal class MainNavigator(
     private val dispatcherProvider = AndroidDispatcherProvider()
 
     override fun initialStack(): List<Scene<out Container>> {
-        return listOf(AWListScene(null, dispatcherProvider))
+        return listOf(AWListScene.newInstance(null, dispatcherProvider))
     }
 
     override fun instantiateScene(
@@ -23,7 +23,7 @@ internal class MainNavigator(
         state: SceneState?
     ): Scene<out Container> {
         return when(sceneClass) {
-            AWListScene::class -> AWListScene(state, dispatcherProvider)
+            AWListScene::class -> AWListScene.newInstance(state, dispatcherProvider)
             else -> error("Unknown scene class: $sceneClass")
         }
     }

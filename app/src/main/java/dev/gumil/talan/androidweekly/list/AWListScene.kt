@@ -6,28 +6,21 @@ import com.nhaarman.acorn.state.SceneState
 import com.nhaarman.acorn.state.sceneState
 import dev.gumil.talan.network.NetworkModule
 import dev.gumil.talan.util.DispatcherProvider
+import dev.gumil.talan.util.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.scanReduce
 
 internal class AWListScene(
-    sceneState: SceneState?,
-    private val dispatcherProvider: DispatcherProvider
+    private val viewModel: ViewModel<IssueListAction, IssueListState>,
+    dispatcherProvider: DispatcherProvider,
+    private val initialState: IssueListState? = null
 ): Scene<AWListContainer>, SavableScene {
-
-    private val initialState = getInitialState(sceneState)
-
-    private val viewModel: AndroidWeeklyViewModel
 
     private val job = Job()
 
     private val sceneScope = CoroutineScope(dispatcherProvider.main() + job)
-
-    init {
-        val issueListState = initialState ?: IssueListState.Screen(loadingMode = IssueListState.Mode.LOADING)
-        viewModel = getAndroidWeekly(issueListState)
-    }
 
     override fun onStart() {
         initialState ?: run {
@@ -58,19 +51,44 @@ internal class AWListScene(
         job.cancel()
     }
 
-    private fun getAndroidWeekly(initialState: IssueListState): AndroidWeeklyViewModel {
-        return AndroidWeeklyViewModel(
-            NetworkModule.provideTalanApi(),
-            dispatcherProvider,
-            initialState
-        )
-    }
-
-    private fun getInitialState(sceneState: SceneState?): IssueListState? {
-        return (sceneState?.getUnchecked(KEY_STATE) as? IssueListStateUi)?.mapToModel()
-    }
-
     companion object {
         private const val KEY_STATE = "key_state"
+
+        fun newInstance(
+            sceneState: SceneState?,
+            dispatcherProvider: DispatcherProvider
+        ): AWListScene {
+            val initialState = getInitialState(sceneState)
+            val viewModel = getViewModel(initialState, dispatcherProvider)
+
+            return AWListScene(
+                viewModel,
+                dispatcherProvider,
+                initialState
+            )
+        }
+
+        private fun getViewModel(
+            initialState: IssueListState?,
+            dispatcherProvider: DispatcherProvider
+        ): ViewModel<IssueListAction, IssueListState> {
+            val issueListState = initialState ?: IssueListState.Screen(loadingMode = IssueListState.Mode.LOADING)
+            return getAndroidWeekly(issueListState, dispatcherProvider)
+        }
+
+        internal fun getInitialState(sceneState: SceneState?): IssueListState? {
+            return (sceneState?.getUnchecked(KEY_STATE) as? IssueListStateUi)?.mapToModel()
+        }
+
+        private fun getAndroidWeekly(
+            initialState: IssueListState,
+            dispatcherProvider: DispatcherProvider
+        ): AndroidWeeklyViewModel {
+            return AndroidWeeklyViewModel(
+                NetworkModule.provideTalanApi(),
+                dispatcherProvider,
+                initialState
+            )
+        }
     }
 }
