@@ -52,6 +52,9 @@ android {
         pickFirst("META-INF/ktor-http-cio.kotlin_module")
         pickFirst("META-INF/kotlinx-serialization-runtime.kotlin_module")
     }
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -68,6 +71,7 @@ dependencies {
     implementation("androidx.ui:ui-tooling:0.1.0-dev14")
     implementation("com.nhaarman.acorn.ext:acorn-android:1.2.4")
     testImplementation("junit:junit:4.13")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 }
