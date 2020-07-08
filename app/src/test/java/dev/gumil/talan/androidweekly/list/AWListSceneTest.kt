@@ -2,7 +2,6 @@ package dev.gumil.talan.androidweekly.list
 
 import androidx.compose.FrameManager
 import androidx.compose.MutableState
-import androidx.compose.frames.Frame
 import androidx.compose.mutableStateOf
 import dev.gumil.talan.FakeViewModel
 import dev.gumil.talan.TestDispatcherProvider
@@ -21,17 +20,15 @@ class AWListSceneTest {
 
     private val initialState = IssueListState.Screen()
 
-    private val viewModel =
-        FakeViewModel<IssueListAction, IssueListState>(
-            initialState
-        )
+    private val viewModel = FakeViewModel<IssueListAction, IssueListState>(
+        initialState
+    )
 
     private val dispatcherProvider = TestDispatcherProvider()
 
     private val scene = AWListScene(viewModel, dispatcherProvider)
 
-    private val container =
-        Container(initialState)
+    private val container = Container(initialState)
 
     @Test
     fun `starting scene`() {
@@ -43,7 +40,7 @@ class AWListSceneTest {
     }
 
     @Test
-    fun `restoring scene`() {
+    fun `restoring scene`() = FrameManager.framed {
         // Given
         scene.attach(container)
         viewModel.givenNextState(IssueListState.Screen())
@@ -56,6 +53,31 @@ class AWListSceneTest {
 
         // Then
         viewModel.verifyDispatchedAction(null)
+    }
+
+    @Test
+    fun `scene is reattached`() = FrameManager.framed {
+        // Given
+        scene.attach(container)
+        val state = IssueListState.GoToDetail(
+            IssueEntry(
+                Random.nextInt().toString(),
+                Random.nextInt().toString(),
+                Random.nextInt().toString(),
+                Random.nextInt().toString(),
+                Random.nextInt().toString(),
+                Random.nextBoolean(),
+                EntryType.ARTICLE
+            )
+        )
+        viewModel.givenNextState(state)
+        val newContainer = Container(initialState)
+
+        // When
+        scene.attach(newContainer)
+
+        // Then
+        assertEquals(state.mapToUiModel(), newContainer.state.value)
     }
 
     @Test
@@ -112,7 +134,7 @@ class AWListSceneTest {
     }
 
     @Test
-    fun `action changes calls dispatch`() {
+    fun `action changes calls dispatch`() = FrameManager.framed {
         // Given
         scene.onStart()
         scene.attach(container)

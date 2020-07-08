@@ -10,7 +10,8 @@ import dev.gumil.talan.util.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.scanReduce
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.scan
 
 internal class AWListScene(
     private val viewModel: ViewModel<IssueListAction, IssueListState>,
@@ -18,9 +19,9 @@ internal class AWListScene(
     private val initialState: IssueListState? = null
 ): Scene<AWListContainer>, SavableScene {
 
-    private val job = Job()
-
-    private val sceneScope = CoroutineScope(dispatcherProvider.main() + job)
+    private val scopeJob = Job()
+    private var stateJob: Job? = null
+    private val sceneScope = CoroutineScope(dispatcherProvider.main() + scopeJob)
 
     override fun onStart() {
         initialState ?: run {
@@ -29,15 +30,30 @@ internal class AWListScene(
     }
 
     override fun attach(v: AWListContainer) {
-        viewModel.state
-            .scanReduce { accumulator, value ->
-                v.state.value = value.mapToUiModel(accumulator)
-                if (value is IssueListState.Screen) value
-                else accumulator
+        stateJob = viewModel.state
+            .scan(emptyList<IssueListState>()) { acc, value ->
+                if (value is IssueListState.Error) acc + value
+                else listOf(value)
+            }
+            .onEach { states ->
+                val newState = when (states.size) {
+                    1 -> states.single().mapToUiModel()
+                    2 -> {
+                        val acc = states[0]
+                        val value = states[1]
+                        value.mapToUiModel(acc)
+                    }
+                    else -> return@onEach // Ignore the value
+                }
+                v.state.value = newState
             }
             .launchIn(sceneScope)
 
         v.actions = { viewModel.dispatch(it) }
+    }
+
+    override fun onStop() {
+        stateJob?.cancel()
     }
 
     override fun saveInstanceState(): SceneState {
@@ -48,7 +64,7 @@ internal class AWListScene(
 
     override fun onDestroy() {
         viewModel.clear()
-        job.cancel()
+        scopeJob.cancel()
     }
 
     companion object {
