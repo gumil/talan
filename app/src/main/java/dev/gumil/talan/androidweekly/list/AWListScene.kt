@@ -4,7 +4,7 @@ import com.nhaarman.acorn.presentation.SavableScene
 import com.nhaarman.acorn.presentation.Scene
 import com.nhaarman.acorn.state.SceneState
 import com.nhaarman.acorn.state.sceneState
-import dev.gumil.talan.network.NetworkModule
+import dev.gumil.talan.network.TalanApi
 import dev.gumil.talan.util.DispatcherProvider
 import dev.gumil.talan.util.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -71,11 +71,12 @@ internal class AWListScene(
         private const val KEY_STATE = "key_state"
 
         fun newInstance(
-            sceneState: SceneState?,
-            dispatcherProvider: DispatcherProvider
+            talanApi: TalanApi,
+            dispatcherProvider: DispatcherProvider,
+            sceneState: SceneState? = null
         ): AWListScene {
             val initialState = getInitialState(sceneState)
-            val viewModel = getViewModel(initialState, dispatcherProvider)
+            val viewModel = getViewModel(initialState, talanApi, dispatcherProvider)
 
             return AWListScene(
                 viewModel,
@@ -86,10 +87,11 @@ internal class AWListScene(
 
         private fun getViewModel(
             initialState: IssueListState?,
+            talanApi: TalanApi,
             dispatcherProvider: DispatcherProvider
         ): ViewModel<IssueListAction, IssueListState> {
             val issueListState = initialState ?: IssueListState.Screen(loadingMode = IssueListState.Mode.LOADING)
-            return getAndroidWeekly(issueListState, dispatcherProvider)
+            return getAndroidWeekly(issueListState, talanApi, dispatcherProvider)
         }
 
         internal fun getInitialState(sceneState: SceneState?): IssueListState? {
@@ -98,10 +100,11 @@ internal class AWListScene(
 
         private fun getAndroidWeekly(
             initialState: IssueListState,
+            talanApi: TalanApi,
             dispatcherProvider: DispatcherProvider
         ): AndroidWeeklyViewModel {
             return AndroidWeeklyViewModel(
-                NetworkModule.provideTalanApi(),
+                talanApi,
                 dispatcherProvider,
                 initialState
             )
