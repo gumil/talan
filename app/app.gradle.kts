@@ -71,6 +71,7 @@ dependencies {
     implementation("androidx.ui:ui-material:0.1.0-dev14")
     implementation("androidx.ui:ui-tooling:0.1.0-dev14")
     implementation("com.nhaarman.acorn.ext:acorn-android:1.2.4")
+    implementation("com.nhaarman.acorn.ext:acorn-testing:1.2.4")
     testImplementation("junit:junit:4.13")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
