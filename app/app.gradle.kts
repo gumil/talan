@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("android.extensions")
+    // kotlin("android.extensions")
+    // Kotlin android extensiosn does not work well with Jetpack Compose
 }
 
 android {

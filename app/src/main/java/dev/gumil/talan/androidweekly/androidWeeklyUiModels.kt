@@ -1,11 +1,10 @@
 package dev.gumil.talan.androidweekly
 
+import android.os.Parcel
 import android.os.Parcelable
 import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.network.IssueEntry
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class IssueEntryUi(
     val title: String,
     val description: String,
@@ -14,7 +13,43 @@ data class IssueEntryUi(
     val host: String,
     val isSponsored: Boolean,
     val type: EntryTypeUi
-): Parcelable
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readByte() != 0.toByte(),
+        EntryTypeUi.values()[parcel.readInt()]
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(title)
+        parcel.writeString(description)
+        parcel.writeString(image)
+        parcel.writeString(link)
+        parcel.writeString(host)
+        parcel.writeByte(if (isSponsored) 1 else 0)
+        parcel.writeInt(type.ordinal)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<IssueEntryUi> {
+        override fun createFromParcel(parcel: Parcel): IssueEntryUi {
+            return IssueEntryUi(parcel)
+        }
+
+        override fun newArray(size: Int): Array<IssueEntryUi?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+}
 
 enum class EntryTypeUi{
     ARTICLE,
