@@ -2,7 +2,6 @@ package dev.gumil.talan.acorn
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.mutableStateOf
@@ -41,7 +40,6 @@ internal abstract class AcornComposeActivity: AppCompatActivity() {
         setContent {
             MaterialTheme {
                 Crossfade(currentScreen.value) { screen ->
-                    Log.d("tantrums", "render $screen")
                     screen.render()
                 }
             }
