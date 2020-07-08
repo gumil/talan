@@ -45,7 +45,7 @@ internal class AWListScene(
                     }
                     else -> return@onEach // Ignore the value
                 }
-                v.state.value = newState
+                v.setState(newState)
             }
             .launchIn(sceneScope)
 

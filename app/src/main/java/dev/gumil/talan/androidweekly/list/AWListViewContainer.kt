@@ -32,11 +32,17 @@ import dev.gumil.talan.ui.SwipeToRefreshLayout
 
 internal class AWListViewContainer: AWListContainer {
 
-    override val state: MutableState<IssueListStateUi> = mutableStateOf(IssueListStateUi.Screen(
+    private val state: MutableState<IssueListStateUi> = mutableStateOf(IssueListStateUi.Screen(
         loadingMode = IssueListStateUi.Mode.LOADING)
     )
 
     override var actions: (IssueListAction) -> Unit = {}
+    override val currentState: IssueListStateUi
+        get() = state.value
+
+    override fun setState(issueListStateUi: IssueListStateUi) {
+        state.value = issueListStateUi
+    }
 
     @Composable
     override fun render() {

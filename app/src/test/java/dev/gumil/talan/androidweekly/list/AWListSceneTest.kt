@@ -40,7 +40,7 @@ class AWListSceneTest {
     }
 
     @Test
-    fun `restoring scene`() = FrameManager.framed {
+    fun `restoring scene`() {
         // Given
         scene.attach(container)
         viewModel.givenNextState(IssueListState.Screen())
@@ -56,7 +56,7 @@ class AWListSceneTest {
     }
 
     @Test
-    fun `scene is reattached`() = FrameManager.framed {
+    fun `scene is reattached`() {
         // Given
         scene.attach(container)
         val state = IssueListState.GoToDetail(
@@ -77,11 +77,11 @@ class AWListSceneTest {
         scene.attach(newContainer)
 
         // Then
-        assertEquals(state.mapToUiModel(), newContainer.state.value)
+        assertEquals(state.mapToUiModel(), newContainer.currentState)
     }
 
     @Test
-    fun `state screen changes`() = FrameManager.framed {
+    fun `state screen changes`() {
         // Given
         scene.onStart()
         scene.attach(container)
@@ -91,11 +91,11 @@ class AWListSceneTest {
         viewModel.givenNextState(state)
 
         // Then
-        assertEquals(state.mapToUiModel(), container.state.value)
+        assertEquals(state.mapToUiModel(), container.currentState)
     }
 
     @Test
-    fun `state error changes`() = FrameManager.framed {
+    fun `state error changes`() {
         // Given
         scene.onStart()
         scene.attach(container)
@@ -106,11 +106,11 @@ class AWListSceneTest {
         viewModel.givenNextState(state)
 
         // Then
-        assertEquals(IssueListStateUi.Screen(exception = exception), container.state.value)
+        assertEquals(IssueListStateUi.Screen(exception = exception), container.currentState)
     }
 
     @Test
-    fun `state go to detail changes`() = FrameManager.framed {
+    fun `state go to detail changes`() {
         // Given
         scene.onStart()
         scene.attach(container)
@@ -130,11 +130,11 @@ class AWListSceneTest {
         viewModel.givenNextState(state)
 
         // Then
-        assertEquals(state.mapToUiModel(), container.state.value)
+        assertEquals(state.mapToUiModel(), container.currentState)
     }
 
     @Test
-    fun `action changes calls dispatch`() = FrameManager.framed {
+    fun `action changes calls dispatch`() {
         // Given
         scene.onStart()
         scene.attach(container)
@@ -157,7 +157,7 @@ class AWListSceneTest {
     }
 
     @Test
-    fun `onDestroy clears viewModel and cancels job`() = FrameManager.framed {
+    fun `onDestroy clears viewModel and cancels job`() {
         // Given
         scene.onStart()
         scene.attach(container)
@@ -169,12 +169,23 @@ class AWListSceneTest {
         // Then
         viewModel.verifyCleared()
 
-        assertEquals(IssueListStateUi.Screen(), container.state.value)
+        assertEquals(IssueListStateUi.Screen(), container.currentState)
     }
 
     class Container(initialState: IssueListState): AWListContainer {
-        override val state: MutableState<IssueListStateUi> = mutableStateOf(initialState.mapToUiModel())
+        private val state: MutableState<IssueListStateUi> = mutableStateOf(initialState.mapToUiModel())
         override var actions: (IssueListAction) -> Unit = {}
+        override val currentState: IssueListStateUi
+            get() = FrameManager.framed {
+                state.value
+            }
+
+        override fun setState(issueListStateUi: IssueListStateUi) {
+            FrameManager.framed {
+                state.value = issueListStateUi
+            }
+        }
+
         override fun render() {}
     }
 }
