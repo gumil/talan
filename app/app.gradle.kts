@@ -1,8 +1,5 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    // kotlin("android.extensions")
-    // Kotlin android extensiosn does not work well with Jetpack Compose
+    App.plugins.forEach(::id)
 }
 
 android {
@@ -60,20 +57,7 @@ android {
 
 dependencies {
     implementation(project(":sharedClient"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
-    implementation("dev.gumil.kaskade:core:0.4.0")
-    implementation("androidx.activity:activity-ktx:1.1.0")
-    implementation("androidx.core:core-ktx:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("com.google.android.material:material:1.1.0")
-    implementation("androidx.ui:ui-core:0.1.0-dev14")
-    implementation("androidx.ui:ui-layout:0.1.0-dev14")
-    implementation("androidx.ui:ui-material:0.1.0-dev14")
-    implementation("androidx.ui:ui-tooling:0.1.0-dev14")
-    implementation("com.nhaarman.acorn.ext:acorn-android:1.2.4")
-    implementation("com.nhaarman.acorn.ext:acorn-testing:1.2.4")
-    testImplementation("junit:junit:4.13")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
-    androidTestImplementation("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+    App.implementations.forEach(::implementation)
+    App.testImplementations.forEach(::testImplementation)
+    App.androidTestImplementation.forEach(::androidTestImplementation)
 }

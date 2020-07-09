@@ -12,6 +12,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 SharedClient.commonMain.forEach(::implementation)
+                SharedClient.commonMainApi.forEach(::api)
             }
         }
 

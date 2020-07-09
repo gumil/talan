@@ -15,9 +15,12 @@ object SharedClient {
         "io.ktor:ktor-client-json:$ktor",
         "io.ktor:ktor-client-logging:$ktor",
         "io.ktor:ktor-client-serialization:$ktor",
-        Kaskade.core,
         Kaskade.coroutines,
         Coroutines.common
+    )
+
+    val commonMainApi = listOf(
+        Kaskade.core
     )
 
     val commonTest = listOf(

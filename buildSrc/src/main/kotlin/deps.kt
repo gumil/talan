@@ -19,6 +19,7 @@ internal object Coroutines {
     const val jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
     const val native = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.coroutines}"
+    const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
 }
 
 internal object Kaskade {
