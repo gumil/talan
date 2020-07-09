@@ -1,7 +1,3 @@
-/**
- * To not overcomplicate things with kotlinx serialization and ktor since it's not
- * working correctly with kotless.
- */
 object Backend {
     private const val kotless = "0.1.5"
     private const val jsoup = "1.13.1"
