@@ -31,22 +31,7 @@ internal class AWListScene(
 
     override fun attach(v: AWListContainer) {
         stateJob = viewModel.state
-            .scan(emptyList<IssueListState>()) { acc, value ->
-                if (value is IssueListState.Error) acc + value
-                else listOf(value)
-            }
-            .onEach { states ->
-                val newState = when (states.size) {
-                    1 -> states.single().mapToUiModel()
-                    2 -> {
-                        val acc = states[0]
-                        val value = states[1]
-                        value.mapToUiModel(acc)
-                    }
-                    else -> return@onEach // Ignore the value
-                }
-                v.setState(newState)
-            }
+            .onEach { v.setState(it.mapToUiModel()) }
             .launchIn(sceneScope)
 
         v.actions = { viewModel.dispatch(it) }

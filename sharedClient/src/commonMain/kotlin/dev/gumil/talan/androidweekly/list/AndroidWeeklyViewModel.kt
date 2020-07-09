@@ -53,18 +53,17 @@ class AndroidWeeklyViewModel(
 
     private suspend fun <A : IssueListAction> Flow<ActionState<A, IssueListState>>.getLatestAndroidWeekly(): Flow<IssueListState> {
         return this
-            .map { it.currentState as IssueListState.Screen }
-            .flatMapConcat { state ->
+            .flatMapConcat { actionState ->
+                val state = actionState.currentState as IssueListState.Screen
                 flowOf(
                     state.copy(loadingMode = IssueListState.Mode.LOADING),
                     IssueListState.Screen(
                         talanApi.getAndroidWeeklyIssues().first().entries,
                         IssueListState.Mode.IDLE
                     )
-                )
-            }
-            .catch<IssueListState> { cause ->
-                emit(IssueListState.Error(cause))
+                ).catch<IssueListState> { cause ->
+                    emit(state.copy(exception = cause))
+                }
             }
             .flowOn(dispatcherProvider.io())
     }

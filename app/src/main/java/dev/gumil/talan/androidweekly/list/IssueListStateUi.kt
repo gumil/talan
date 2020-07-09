@@ -76,22 +76,13 @@ sealed class IssueListStateUi {
     }
 }
 
-fun IssueListState.mapToUiModel(previousState: IssueListState? = null): IssueListStateUi {
+fun IssueListState.mapToUiModel(): IssueListStateUi {
     return when(this) {
         is IssueListState.Screen -> IssueListStateUi.Screen(
             issues.map { it.mapToUiModel() },
-            loadingMode.mapToUiModel()
+            loadingMode.mapToUiModel(),
+            exception
         )
-        is IssueListState.Error -> {
-            if (previousState is IssueListState.Screen) {
-                IssueListStateUi.Screen(
-                    previousState.issues.map { it.mapToUiModel() },
-                    previousState.loadingMode.mapToUiModel(),
-                    exception
-                )
-            } else error("Mapping not supported")
-
-        }
         is IssueListState.GoToDetail -> IssueListStateUi.GoToDetail(issue.mapToUiModel())
     }
 }

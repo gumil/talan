@@ -9,12 +9,9 @@ sealed class IssueListState : State {
 
     data class Screen(
         val issues: List<IssueEntry> = emptyList(),
-        val loadingMode: Mode = Mode.IDLE
+        val loadingMode: Mode = Mode.IDLE,
+        val exception: Throwable? = null
     ) : IssueListState()
-
-    data class Error(
-        val exception: Throwable
-    ) : IssueListState(), SingleEvent
 
     data class GoToDetail(
         val issue: IssueEntry

@@ -100,7 +100,7 @@ class AWListSceneTest {
         scene.onStart()
         scene.attach(container)
         val exception = RuntimeException()
-        val state = IssueListState.Error(exception)
+        val state = IssueListState.Screen(exception = exception)
 
         // When
         viewModel.givenNextState(state)
@@ -164,7 +164,7 @@ class AWListSceneTest {
 
         // When
         scene.onDestroy()
-        viewModel.givenNextState(IssueListState.Error(RuntimeException()))
+        viewModel.givenNextState(IssueListState.Screen(exception = RuntimeException()))
 
         // Then
         viewModel.verifyCleared()
