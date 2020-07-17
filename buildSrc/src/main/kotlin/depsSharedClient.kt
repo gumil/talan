@@ -1,7 +1,6 @@
 object SharedClient {
     private const val serialization = "0.20.0"
     private const val ktor = "1.3.2"
-    private const val kaskade = "0.4.0"
 
     val plugins = listOf(
         "org.jetbrains.kotlin.multiplatform" to null,

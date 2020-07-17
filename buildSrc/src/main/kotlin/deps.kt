@@ -3,7 +3,7 @@ internal object Versions {
     const val jacoco = "0.8.5"
     const val mockito = "2.2.0"
     const val coroutines = "1.3.7"
-    const val kaskade = "0.4.0"
+    const val kaskade = "0.4.1"
 }
 
 internal object Plugins {
