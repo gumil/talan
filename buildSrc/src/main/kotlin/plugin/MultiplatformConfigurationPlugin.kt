@@ -3,7 +3,6 @@ package plugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.Sync
-import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.register
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -22,18 +21,6 @@ class MultiplatformConfigurationPlugin : Plugin<Project> {
 
         project.extensions.getByType<KotlinMultiplatformExtension>().run {
             jvm()
-            js {
-                project.configure(listOf(compilations["main"], compilations["test"])) {
-                    project.tasks.getByName(compileKotlinTaskName) {
-                        kotlinOptions {
-                            metaInfo = true
-                            sourceMap = true
-                            sourceMapEmbedSources = "always"
-                            moduleKind = "umd"
-                        }
-                    }
-                }
-            }
 
             val iOSTargetConfiguration: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
                 if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)

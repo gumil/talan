@@ -35,18 +35,6 @@ kotlin {
             }
         }
 
-        js().compilations["main"].defaultSourceSet {
-            dependencies {
-                SharedClient.jsMain.forEach(::implementation)
-            }
-        }
-
-        js().compilations["test"].defaultSourceSet {
-            dependencies {
-                SharedClient.jsTest.forEach(::implementation)
-            }
-        }
-
         sourceSets["iosMain"].dependencies {
             SharedClient.nativeMain.forEach(::implementation)
         }

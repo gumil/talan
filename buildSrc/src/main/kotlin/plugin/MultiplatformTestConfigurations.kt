@@ -1,40 +1,24 @@
 package plugin
 
-import com.moowork.gradle.node.NodeExtension
-import com.moowork.gradle.node.NodePlugin
-import com.moowork.gradle.node.npm.NpmTask
-import com.moowork.gradle.node.task.NodeTask
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.IvyArtifactRepository
 import org.gradle.api.plugins.JavaBasePlugin
-import org.gradle.api.tasks.Copy
-import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.register
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetWithSimulatorTests
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 fun Project.configureMppTest() {
     configureIosTest(this)
-    configureJsTest(this)
 
     tasks.register("test") {
-        dependsOn("jvmTest", "iosSimulatorTest", "jsTest")
+        dependsOn("jvmTest", "iosTest")
         group = JavaBasePlugin.VERIFICATION_GROUP
-    }
-
-    repositories.whenObjectAdded {
-        if (this is IvyArtifactRepository) {
-            metadataSources {
-                artifact()
-            }
-        }
     }
 }
 
 private fun configureIosTest(project: Project) {
-    project.tasks.register("iosSimulatorTest") {
+    project.tasks.getByName("iosTest") {
         group = JavaBasePlugin.VERIFICATION_GROUP
         dependsOn("linkIos")
         val device = project.findProperty("iosDevice")?.toString() ?: "iPhone 8"
@@ -50,60 +34,5 @@ private fun configureIosTest(project: Project) {
                 commandLine("xcrun", "simctl", "spawn", device, binary.absolutePath)
             }
         }
-    }
-}
-
-private fun configureJsTest(project: Project) {
-    project.apply<NodePlugin>()
-    project.extensions.getByType<NodeExtension>().run {
-        version = "10.9.0"
-        download = true
-        nodeModulesDir = project.file("${project.buildDir}/npm")
-    }
-
-    val installDependencies = "installDependencies"
-    val populateNodeModules = "populateNodeModulesForTest"
-    val runMocha = "runMocha"
-
-    project.tasks.register<NpmTask>(installDependencies) {
-        // text-encoding is a dependency from kotlinx-io
-        setArgs(listOf("install", "mocha@6.0.0", "text-encoding@0.7.0"))
-    }
-
-    val jsCompilations =
-        project.extensions.getByType<KotlinMultiplatformExtension>().js().compilations
-    val testCompilation = jsCompilations.getByName("test")
-
-    project.tasks.register<Copy>(populateNodeModules) {
-        from("${project.buildDir}/npm/node_modules")
-        from(jsCompilations.getByName("main").output.allOutputs)
-
-        testCompilation.runtimeDependencyFiles.forEach {
-            if (it.exists() && !it.isDirectory) {
-                from(project.zipTree(it.absolutePath).matching {
-                    include("*.js")
-                })
-            }
-        }
-
-        into("${project.buildDir}/node_modules")
-    }
-
-    project.tasks.register<NodeTask>(runMocha) {
-        dependsOn("compileTestKotlinJs", installDependencies, populateNodeModules)
-        script = project.file("${project.buildDir}/npm/node_modules/.bin/mocha")
-        setArgs(
-            listOf(
-                "--timeout", "15000",
-                project.file(
-                    project.relativePath(testCompilation.output.allOutputs.first()) +
-                        "/${project.name}_test.js"
-                ).absolutePath
-            )
-        )
-    }
-
-    project.tasks.getByName("jsTest") {
-        dependsOn(runMocha)
     }
 }

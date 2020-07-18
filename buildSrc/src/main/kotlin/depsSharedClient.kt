@@ -44,21 +44,6 @@ object SharedClient {
         "io.ktor:ktor-client-mock-jvm:$ktor"
     )
 
-    val jsMain = listOf(
-        "org.jetbrains.kotlin:kotlin-stdlib-js",
-        "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serialization",
-        "io.ktor:ktor-client-js:$ktor",
-        "io.ktor:ktor-client-json-js:$ktor",
-        "io.ktor:ktor-client-logging-js:$ktor",
-        "io.ktor:ktor-client-serialization-js:$ktor",
-        Coroutines.js
-    )
-
-    val jsTest = listOf(
-        "org.jetbrains.kotlin:kotlin-test-js",
-        "io.ktor:ktor-client-mock-js:$ktor"
-    )
-
     val nativeMain = listOf(
         "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization",
         "io.ktor:ktor-client-ios:$ktor",
