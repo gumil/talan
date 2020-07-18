@@ -9,7 +9,6 @@ import dev.gumil.talan.util.Verifier
 import dev.gumil.talan.util.verifyCollect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.yield
 import kotlin.random.Random
@@ -57,9 +56,6 @@ internal class AndroidWeeklyViewModelTest {
         val verifier = Verifier<IssueListState>()
         val job = viewModel.state
             .take(2)
-            .onEach {
-                println(it)
-            }
             .verifyCollect(this, verifier.function)
 
         yield() // Consume initial state

@@ -12,6 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.yield
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -56,12 +57,19 @@ class AndroidWeeklyViewModel(
             .flatMapConcat { actionState ->
                 val state = actionState.currentState as IssueListState.Screen
                 flowOf(
-                    state.copy(loadingMode = IssueListState.Mode.LOADING),
                     IssueListState.Screen(
                         talanApi.getAndroidWeeklyIssues().first().entries,
                         IssueListState.Mode.IDLE
                     )
-                ).catch<IssueListState> { cause ->
+                ).onStart {
+                    emit(state.copy(loadingMode = IssueListState.Mode.LOADING))
+
+                    /**
+                     * This is to make sure native emits this state since it currently only runs on
+                     * the main thread
+                     */
+                    yield()
+                }.catch<IssueListState> { cause ->
                     emit(state.copy(exception = cause))
                 }
             }
