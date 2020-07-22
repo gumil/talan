@@ -56,12 +56,12 @@ class AndroidWeeklyViewModel(
         return this
             .flatMapConcat { actionState ->
                 val state = actionState.currentState as IssueListState.Screen
-                flowOf(
-                    IssueListState.Screen(
+                flow<IssueListState> {
+                    emit(IssueListState.Screen(
                         talanApi.getAndroidWeeklyIssues().first().entries,
                         IssueListState.Mode.IDLE
-                    )
-                ).onStart {
+                    ))
+                }.onStart {
                     emit(state.copy(loadingMode = IssueListState.Mode.LOADING))
 
                     /**
@@ -69,10 +69,15 @@ class AndroidWeeklyViewModel(
                      * the main thread
                      */
                     yield()
-                }.catch<IssueListState> { cause ->
-                    emit(state.copy(exception = cause))
+                }.catch { cause ->
+                    emit(state.copy(loadingMode = IssueListState.Mode.IDLE, exception = cause))
                 }
             }
             .flowOn(dispatcherProvider.io())
+    }
+
+    override fun observe(observer: (IssueListState) -> Unit) {
+        state.onEach { observer(it) }
+            .launchIn(uiScope)
     }
 }

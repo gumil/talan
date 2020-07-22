@@ -2,13 +2,16 @@ package dev.gumil.talan.androidweekly.list
 
 import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.network.FakeTalanApi
+import dev.gumil.talan.network.Issue
 import dev.gumil.talan.network.IssueEntry
+import dev.gumil.talan.network.TalanApi
 import dev.gumil.talan.runTest
 import dev.gumil.talan.util.TestDispatcherProvider
 import dev.gumil.talan.util.Verifier
 import dev.gumil.talan.util.verifyCollect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.yield
 import kotlin.random.Random
@@ -76,6 +79,30 @@ internal class AndroidWeeklyViewModelTest {
         verifier.verifyOrder {
             verify(IssueListState.Screen())
             verify(IssueListState.GoToDetail(issue))
+        }
+    }
+
+    @Test
+    fun actionRefresh_throws_error() = runTest {
+        val exception = RuntimeException()
+        val viewModel = AndroidWeeklyViewModel(object : TalanApi {
+            override suspend fun getAndroidWeeklyIssues(): List<Issue> {
+                throw exception
+            }
+        }, TestDispatcherProvider())
+
+        val verifier = Verifier<IssueListState>()
+        val job = viewModel.state
+            .take(3)
+            .verifyCollect(this, verifier.function)
+
+        viewModel.dispatch(IssueListAction.Refresh)
+        job.join()
+
+        verifier.verifyOrder {
+            verify(IssueListState.Screen())
+            verify(IssueListState.Screen(loadingMode = IssueListState.Mode.LOADING))
+            verify(IssueListState.Screen(loadingMode = IssueListState.Mode.IDLE, exception = exception))
         }
     }
 }

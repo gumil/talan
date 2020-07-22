@@ -13,4 +13,6 @@ interface ViewModel<A: Action, S: State> {
     fun dispatch(action: A)
 
     fun clear()
+
+    fun observe(observer: (S) -> Unit)
 }
