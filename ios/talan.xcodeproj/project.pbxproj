@@ -1,0 +1,667 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00045AC124C3B30700A0BFDC /* SharedClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; };
+		00045AC224C3B30800A0BFDC /* SharedClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		00045AC424C3B32700A0BFDC /* SharedClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; };
+		00A252FD24B7C3D400FB9C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */; };
+		00A252FF24B7C3D400FB9C6C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */; };
+		00A2530124B7C3D400FB9C6C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2530024B7C3D400FB9C6C /* ContentView.swift */; };
+		00A2530324B7C3D500FB9C6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A2530224B7C3D500FB9C6C /* Assets.xcassets */; };
+		00A2530624B7C3D500FB9C6C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A2530524B7C3D500FB9C6C /* Preview Assets.xcassets */; };
+		00A2530924B7C3D500FB9C6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00A2530724B7C3D500FB9C6C /* LaunchScreen.storyboard */; };
+		00A2531424B7C3D500FB9C6C /* talanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2531324B7C3D500FB9C6C /* talanTests.swift */; };
+		00A2531F24B7C3D500FB9C6C /* talanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2531E24B7C3D500FB9C6C /* talanUITests.swift */; };
+		00C2A34924C8D27E00198EFB /* AWListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2A34824C8D27E00198EFB /* AWListItem.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00A2531024B7C3D500FB9C6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00A252F124B7C3D400FB9C6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00A252F824B7C3D400FB9C6C;
+			remoteInfo = talan;
+		};
+		00A2531B24B7C3D500FB9C6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00A252F124B7C3D400FB9C6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00A252F824B7C3D400FB9C6C;
+			remoteInfo = talan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00045AC324C3B30800A0BFDC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				00045AC224C3B30800A0BFDC /* SharedClient.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00045AC024C3B30700A0BFDC /* SharedClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedClient.framework; path = "../sharedClient/build/xcode-frameworks/SharedClient.framework"; sourceTree = "<group>"; };
+		00A252F924B7C3D400FB9C6C /* talan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		00A2530024B7C3D400FB9C6C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00A2530224B7C3D500FB9C6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00A2530524B7C3D500FB9C6C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00A2530824B7C3D500FB9C6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		00A2530A24B7C3D500FB9C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00A2530F24B7C3D500FB9C6C /* talanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A2531324B7C3D500FB9C6C /* talanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talanTests.swift; sourceTree = "<group>"; };
+		00A2531524B7C3D500FB9C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00A2531A24B7C3D500FB9C6C /* talanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A2531E24B7C3D500FB9C6C /* talanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talanUITests.swift; sourceTree = "<group>"; };
+		00A2532024B7C3D500FB9C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00C2A34824C8D27E00198EFB /* AWListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWListItem.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00A252F624B7C3D400FB9C6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00045AC424C3B32700A0BFDC /* SharedClient.framework in Frameworks */,
+				00045AC124C3B30700A0BFDC /* SharedClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A2530C24B7C3D500FB9C6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A2531724B7C3D500FB9C6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00045ABF24C3B30700A0BFDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00045AC024C3B30700A0BFDC /* SharedClient.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00A252F024B7C3D400FB9C6C = {
+			isa = PBXGroup;
+			children = (
+				00A252FB24B7C3D400FB9C6C /* talan */,
+				00A2531224B7C3D500FB9C6C /* talanTests */,
+				00A2531D24B7C3D500FB9C6C /* talanUITests */,
+				00A252FA24B7C3D400FB9C6C /* Products */,
+				00045ABF24C3B30700A0BFDC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00A252FA24B7C3D400FB9C6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00A252F924B7C3D400FB9C6C /* talan.app */,
+				00A2530F24B7C3D500FB9C6C /* talanTests.xctest */,
+				00A2531A24B7C3D500FB9C6C /* talanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00A252FB24B7C3D400FB9C6C /* talan */ = {
+			isa = PBXGroup;
+			children = (
+				00C2A34624C8D25200198EFB /* androidweekly */,
+				00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */,
+				00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */,
+				00A2530024B7C3D400FB9C6C /* ContentView.swift */,
+				00A2530224B7C3D500FB9C6C /* Assets.xcassets */,
+				00A2530724B7C3D500FB9C6C /* LaunchScreen.storyboard */,
+				00A2530A24B7C3D500FB9C6C /* Info.plist */,
+				00A2530424B7C3D500FB9C6C /* Preview Content */,
+			);
+			path = talan;
+			sourceTree = "<group>";
+		};
+		00A2530424B7C3D500FB9C6C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				00A2530524B7C3D500FB9C6C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		00A2531224B7C3D500FB9C6C /* talanTests */ = {
+			isa = PBXGroup;
+			children = (
+				00A2531324B7C3D500FB9C6C /* talanTests.swift */,
+				00A2531524B7C3D500FB9C6C /* Info.plist */,
+			);
+			path = talanTests;
+			sourceTree = "<group>";
+		};
+		00A2531D24B7C3D500FB9C6C /* talanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				00A2531E24B7C3D500FB9C6C /* talanUITests.swift */,
+				00A2532024B7C3D500FB9C6C /* Info.plist */,
+			);
+			path = talanUITests;
+			sourceTree = "<group>";
+		};
+		00C2A34624C8D25200198EFB /* androidweekly */ = {
+			isa = PBXGroup;
+			children = (
+				00C2A34724C8D26000198EFB /* list */,
+			);
+			path = androidweekly;
+			sourceTree = "<group>";
+		};
+		00C2A34724C8D26000198EFB /* list */ = {
+			isa = PBXGroup;
+			children = (
+				00C2A34824C8D27E00198EFB /* AWListItem.swift */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00A252F824B7C3D400FB9C6C /* talan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A2532324B7C3D500FB9C6C /* Build configuration list for PBXNativeTarget "talan" */;
+			buildPhases = (
+				00045AC524C3B3FE00A0BFDC /* build sharedclient */,
+				00A252F524B7C3D400FB9C6C /* Sources */,
+				00A252F624B7C3D400FB9C6C /* Frameworks */,
+				00A252F724B7C3D400FB9C6C /* Resources */,
+				00045AC324C3B30800A0BFDC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = talan;
+			productName = talan;
+			productReference = 00A252F924B7C3D400FB9C6C /* talan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00A2530E24B7C3D500FB9C6C /* talanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A2532624B7C3D500FB9C6C /* Build configuration list for PBXNativeTarget "talanTests" */;
+			buildPhases = (
+				00A2530B24B7C3D500FB9C6C /* Sources */,
+				00A2530C24B7C3D500FB9C6C /* Frameworks */,
+				00A2530D24B7C3D500FB9C6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00A2531124B7C3D500FB9C6C /* PBXTargetDependency */,
+			);
+			name = talanTests;
+			productName = talanTests;
+			productReference = 00A2530F24B7C3D500FB9C6C /* talanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00A2531924B7C3D500FB9C6C /* talanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A2532924B7C3D500FB9C6C /* Build configuration list for PBXNativeTarget "talanUITests" */;
+			buildPhases = (
+				00A2531624B7C3D500FB9C6C /* Sources */,
+				00A2531724B7C3D500FB9C6C /* Frameworks */,
+				00A2531824B7C3D500FB9C6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00A2531C24B7C3D500FB9C6C /* PBXTargetDependency */,
+			);
+			name = talanUITests;
+			productName = talanUITests;
+			productReference = 00A2531A24B7C3D500FB9C6C /* talanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00A252F124B7C3D400FB9C6C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Miguel Panelo";
+				TargetAttributes = {
+					00A252F824B7C3D400FB9C6C = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					00A2530E24B7C3D500FB9C6C = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 00A252F824B7C3D400FB9C6C;
+					};
+					00A2531924B7C3D500FB9C6C = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 00A252F824B7C3D400FB9C6C;
+					};
+				};
+			};
+			buildConfigurationList = 00A252F424B7C3D400FB9C6C /* Build configuration list for PBXProject "talan" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00A252F024B7C3D400FB9C6C;
+			productRefGroup = 00A252FA24B7C3D400FB9C6C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00A252F824B7C3D400FB9C6C /* talan */,
+				00A2530E24B7C3D500FB9C6C /* talanTests */,
+				00A2531924B7C3D500FB9C6C /* talanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00A252F724B7C3D400FB9C6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A2530924B7C3D500FB9C6C /* LaunchScreen.storyboard in Resources */,
+				00A2530624B7C3D500FB9C6C /* Preview Assets.xcassets in Resources */,
+				00A2530324B7C3D500FB9C6C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A2530D24B7C3D500FB9C6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A2531824B7C3D500FB9C6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00045AC524C3B3FE00A0BFDC /* build sharedclient */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "build sharedclient";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd ../sharedClient/build/xcode-frameworks\n./gradlew :sharedClient:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00A252F524B7C3D400FB9C6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A252FD24B7C3D400FB9C6C /* AppDelegate.swift in Sources */,
+				00A252FF24B7C3D400FB9C6C /* SceneDelegate.swift in Sources */,
+				00A2530124B7C3D400FB9C6C /* ContentView.swift in Sources */,
+				00C2A34924C8D27E00198EFB /* AWListItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A2530B24B7C3D500FB9C6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A2531424B7C3D500FB9C6C /* talanTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00A2531624B7C3D500FB9C6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A2531F24B7C3D500FB9C6C /* talanUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00A2531124B7C3D500FB9C6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00A252F824B7C3D400FB9C6C /* talan */;
+			targetProxy = 00A2531024B7C3D500FB9C6C /* PBXContainerItemProxy */;
+		};
+		00A2531C24B7C3D500FB9C6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00A252F824B7C3D400FB9C6C /* talan */;
+			targetProxy = 00A2531B24B7C3D500FB9C6C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00A2530724B7C3D500FB9C6C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00A2530824B7C3D500FB9C6C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00A2532124B7C3D500FB9C6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00A2532224B7C3D500FB9C6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00A2532424B7C3D500FB9C6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"talan/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../sharedClient/build/xcode-frameworks";
+				INFOPLIST_FILE = talan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gumil.talan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00A2532524B7C3D500FB9C6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"talan/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../sharedClient/build/xcode-frameworks";
+				INFOPLIST_FILE = talan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gumil.talan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		00A2532724B7C3D500FB9C6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = talanTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gumil.talanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/talan.app/talan";
+			};
+			name = Debug;
+		};
+		00A2532824B7C3D500FB9C6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = talanTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gumil.talanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/talan.app/talan";
+			};
+			name = Release;
+		};
+		00A2532A24B7C3D500FB9C6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = talanUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gumil.talanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = talan;
+			};
+			name = Debug;
+		};
+		00A2532B24B7C3D500FB9C6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = talanUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gumil.talanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = talan;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00A252F424B7C3D400FB9C6C /* Build configuration list for PBXProject "talan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A2532124B7C3D500FB9C6C /* Debug */,
+				00A2532224B7C3D500FB9C6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		00A2532324B7C3D500FB9C6C /* Build configuration list for PBXNativeTarget "talan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A2532424B7C3D500FB9C6C /* Debug */,
+				00A2532524B7C3D500FB9C6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		00A2532624B7C3D500FB9C6C /* Build configuration list for PBXNativeTarget "talanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A2532724B7C3D500FB9C6C /* Debug */,
+				00A2532824B7C3D500FB9C6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		00A2532924B7C3D500FB9C6C /* Build configuration list for PBXNativeTarget "talanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00A2532A24B7C3D500FB9C6C /* Debug */,
+				00A2532B24B7C3D500FB9C6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00A252F124B7C3D400FB9C6C /* Project object */;
+}
