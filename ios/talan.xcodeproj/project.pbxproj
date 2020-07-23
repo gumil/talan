@@ -10,6 +10,7 @@
 		00045AC124C3B30700A0BFDC /* SharedClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; };
 		00045AC224C3B30800A0BFDC /* SharedClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00045AC424C3B32700A0BFDC /* SharedClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; };
+		007EA96524C9BF0A00B44FC7 /* AWListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007EA96424C9BF0A00B44FC7 /* AWListContainer.swift */; };
 		00A252FD24B7C3D400FB9C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */; };
 		00A252FF24B7C3D400FB9C6C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */; };
 		00A2530124B7C3D400FB9C6C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2530024B7C3D400FB9C6C /* ContentView.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		00045AC024C3B30700A0BFDC /* SharedClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedClient.framework; path = "../sharedClient/build/xcode-frameworks/SharedClient.framework"; sourceTree = "<group>"; };
+		007EA96424C9BF0A00B44FC7 /* AWListContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWListContainer.swift; sourceTree = "<group>"; };
 		00A252F924B7C3D400FB9C6C /* talan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				00C2A34824C8D27E00198EFB /* AWListItem.swift */,
+				007EA96424C9BF0A00B44FC7 /* AWListContainer.swift */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				00A252FF24B7C3D400FB9C6C /* SceneDelegate.swift in Sources */,
 				00A2530124B7C3D400FB9C6C /* ContentView.swift in Sources */,
 				00C2A34924C8D27E00198EFB /* AWListItem.swift in Sources */,
+				007EA96524C9BF0A00B44FC7 /* AWListContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
