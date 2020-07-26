@@ -9,6 +9,6 @@ internal class TestDispatcherProvider: DispatcherProvider {
     }
 
     override fun main(): CoroutineDispatcher {
-        return Dispatchers.Unconfined
+        return Dispatchers.Default
     }
 }
