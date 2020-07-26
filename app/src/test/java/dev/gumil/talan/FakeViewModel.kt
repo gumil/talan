@@ -39,4 +39,8 @@ class FakeViewModel<A: Action, S: State>(
         assertEquals(action, dispatchedAction)
         dispatchedAction = null
     }
+
+    override fun observe(observer: (S) -> Unit) {
+        // unused
+    }
 }
