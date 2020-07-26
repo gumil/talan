@@ -44,3 +44,9 @@ kotlin {
         }
     }
 }
+
+sqldelight {
+    database("talandb") {
+        packageName = "dev.gumil.talan"
+    }
+}

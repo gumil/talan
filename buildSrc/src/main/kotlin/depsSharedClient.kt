@@ -4,7 +4,8 @@ object SharedClient {
 
     val plugins = listOf(
         "org.jetbrains.kotlin.multiplatform" to null,
-        "org.jetbrains.kotlin.plugin.serialization" to Versions.kotlin
+        "org.jetbrains.kotlin.plugin.serialization" to Versions.kotlin,
+        "com.squareup.sqldelight" to null
     )
 
     val commonMain = listOf(
