@@ -9,35 +9,15 @@ import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import java.io.File
 
-fun Project.configureJacocoMultiplatform() {
+fun Project.configureJacocoAndroid(srcPrefix: String = "") {
     configureJacoco {
         tasks.register<JacocoReport>(this) {
-            setDependsOn(setOf("jvmTest"))
-            group = "verification"
-            description = "Runs jacoco test report for jvm multiplatform"
-
-            val debugTree = fileTree("${project.buildDir}/classes/kotlin/jvm/")
-            val mainSrc = "${project.projectDir}/src/commonMain/kotlin"
-
-            sourceDirectories.setFrom(files(mainSrc))
-            classDirectories.setFrom(files(debugTree))
-
-            executionData.setFrom(fileTree(buildDir).apply {
-                setIncludes(setOf("jacoco/jvmTest.exec"))
-            })
-        }
-    }
-}
-
-fun Project.configureJacocoAndroid() {
-    configureJacoco {
-        tasks.register<JacocoReport>(this) {
-            setDependsOn(setOf("testDebugUnitTest", "createDebugCoverageReport"))
+            setDependsOn(setOf("testDebugUnitTest"))
             group = "verification"
             description = "Runs jacoco test report for android"
 
             val debugTree = fileTree("${project.buildDir}/tmp/kotlin-classes/debug")
-            val mainSrc = "${project.projectDir}/src/main/kotlin"
+            val mainSrc = "${project.projectDir}/src/${srcPrefix}main/kotlin"
 
             sourceDirectories.setFrom(files(mainSrc))
             classDirectories.setFrom(files(debugTree))
@@ -45,14 +25,6 @@ fun Project.configureJacocoAndroid() {
             executionData.setFrom(fileTree(buildDir).apply {
                 setIncludes(setOf("jacoco/testDebugUnitTest.exec", "outputs/code-coverage/connected/*coverage.ec"))
             })
-        }
-    }
-}
-
-fun Project.configureJacocoJvm() {
-    configureJacoco {
-        tasks.named<JacocoReport>(this).configure {
-            dependsOn(tasks.named("test"))
         }
     }
 }

@@ -5,6 +5,7 @@ object SharedClient {
     val plugins = listOf(
         "org.jetbrains.kotlin.multiplatform" to null,
         "org.jetbrains.kotlin.plugin.serialization" to Versions.kotlin,
+        "com.android.library" to null,
         "com.squareup.sqldelight" to null
     )
 
@@ -29,7 +30,7 @@ object SharedClient {
         "io.ktor:ktor-client-mock:$ktor"
     )
 
-    val jvmMain = listOf(
+    val androidMain = listOf(
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
         "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization",
         "io.ktor:ktor-client-android:$ktor",
@@ -40,7 +41,7 @@ object SharedClient {
         Coroutines.jvm
     )
 
-    val jvmTest = listOf(
+    val androidTest = listOf(
         "org.jetbrains.kotlin:kotlin-test-junit",
         "io.ktor:ktor-client-mock-jvm:$ktor"
     )

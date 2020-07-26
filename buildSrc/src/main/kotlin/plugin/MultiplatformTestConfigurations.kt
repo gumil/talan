@@ -11,8 +11,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 fun Project.configureMppTest() {
     configureIosTest(this)
 
-    tasks.register("test") {
-        dependsOn("jvmTest", "iosTest")
+    tasks.register("mppTest") {
+        dependsOn("testDebugUnitTest", "iosTest")
         group = JavaBasePlugin.VERIFICATION_GROUP
     }
 }

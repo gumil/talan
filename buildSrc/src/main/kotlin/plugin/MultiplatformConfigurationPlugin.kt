@@ -12,15 +12,16 @@ import java.io.File
 class MultiplatformConfigurationPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         configureMpp(project)
+        project.configureAndroid("android")
         project.configureMppTest()
-        project.configureJacocoMultiplatform()
+        project.configureJacocoAndroid("android")
     }
 
     private fun configureMpp(project: Project) {
         project.configurations.create("compileClasspath")
 
         project.extensions.getByType<KotlinMultiplatformExtension>().run {
-            jvm()
+            android()
 
             val iOSTargetConfiguration: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
                 if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)

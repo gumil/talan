@@ -23,15 +23,17 @@ kotlin {
             }
         }
 
-        jvm().compilations["main"].defaultSourceSet {
+        @Suppress("UNUSED_VARIABLE")
+        val androidMain by getting {
             dependencies {
-                SharedClient.jvmMain.forEach(::implementation)
+                SharedClient.androidMain.forEach(::implementation)
             }
         }
 
-        jvm().compilations["test"].defaultSourceSet {
+        @Suppress("UNUSED_VARIABLE")
+        val androidTest by getting {
             dependencies {
-                SharedClient.jvmTest.forEach(::implementation)
+                SharedClient.androidTest.forEach(::implementation)
             }
         }
 
