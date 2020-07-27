@@ -13,10 +13,10 @@ class AWListRobot(
 ) {
     private val container = context.container<TestAWListContainer>()
 
-    private val state get() = container.currentState
-
-    fun verifyState(state: IssueListStateUi) {
-        assertEquals(state, container.currentState)
+    fun verifyStates(vararg states: IssueListStateUi) {
+        states.forEachIndexed { index, issueListStateUi ->
+            assertEquals(issueListStateUi, container.states[index])
+        }
     }
 
     fun pressBack() {

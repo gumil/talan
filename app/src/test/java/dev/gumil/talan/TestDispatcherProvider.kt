@@ -14,4 +14,8 @@ class TestDispatcherProvider: DispatcherProvider {
     override fun main(): CoroutineDispatcher {
         return testDispatcher
     }
+
+    fun advanceUntilIdle() {
+        testDispatcher.advanceUntilIdle()
+    }
 }
