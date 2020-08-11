@@ -9,7 +9,6 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 
 expect fun clientEngine(): HttpClientEngine
 
@@ -19,12 +18,10 @@ object NetworkModule {
         return HttpClient(engine) {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(
-                    Json(
-                        JsonConfiguration(
-                            encodeDefaults = false,
-                            ignoreUnknownKeys = true
-                        )
-                    )
+                    Json {
+                        encodeDefaults = false
+                        ignoreUnknownKeys = true
+                    }
                 )
             }
 
