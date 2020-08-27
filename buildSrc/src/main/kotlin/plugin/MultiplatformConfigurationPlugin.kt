@@ -33,7 +33,6 @@ class MultiplatformConfigurationPlugin : Plugin<Project> {
                 binaries {
                     framework {
                         baseName = "SharedClient"
-                        freeCompilerArgs = freeCompilerArgs + "-Xobjc-generics"
                     }
                 }
             }

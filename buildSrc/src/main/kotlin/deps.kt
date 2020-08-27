@@ -1,15 +1,11 @@
 internal object Versions {
-    const val kotlin = "1.4.0-rc"
+    const val kotlin = "1.4.0"
     const val jacoco = "0.8.5"
     const val mockito = "2.2.0"
-    const val coroutines = "1.3.8-1.4.0-rc"
-    const val kaskade = "0.4.1"
-    const val serialization = "1.0-M1-1.4.0-rc"
-    const val ktor = "1.3.2-1.4.0-rc"
-}
-
-internal object Plugins {
-    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val coroutines = "1.3.9"
+    const val kaskade = "0.4.2"
+    const val serialization = "1.0.0-RC"
+    const val ktor = "1.4.0"
 }
 
 internal object Common {
@@ -28,7 +24,7 @@ internal object Kaskade {
 
 internal object Serialization {
     val plugin = "org.jetbrains.kotlin.plugin.serialization" to Versions.kotlin
-    const val core = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.serialization}"
+    const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}"
 }
 
 internal object Ktor {
