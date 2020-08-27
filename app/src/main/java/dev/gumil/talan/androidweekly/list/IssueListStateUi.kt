@@ -1,11 +1,11 @@
 package dev.gumil.talan.androidweekly.list
 
-import android.os.Parcel
 import android.os.Parcelable
 import dev.gumil.kaskade.SingleEvent
 import dev.gumil.talan.androidweekly.IssueEntryUi
 import dev.gumil.talan.androidweekly.mapToModel
 import dev.gumil.talan.androidweekly.mapToUiModel
+import kotlinx.android.parcel.Parcelize
 
 /**
  * Jetpack Compose clashes with kotlin android extensions.
@@ -13,63 +13,17 @@ import dev.gumil.talan.androidweekly.mapToUiModel
  */
 sealed class IssueListStateUi {
 
+    @Parcelize
     data class Screen(
         val issues: List<IssueEntryUi> = emptyList(),
         val loadingMode: Mode = Mode.IDLE,
         val exception: Throwable? = null
-    ) : IssueListStateUi(), Parcelable {
-        constructor(parcel: Parcel) : this(
-            parcel.createTypedArrayList(IssueEntryUi.CREATOR)!!,
-            Mode.values()[parcel.readInt()]
-        )
+    ) : IssueListStateUi(), Parcelable
 
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeTypedList(issues)
-            parcel.writeInt(loadingMode.ordinal)
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<Screen> {
-            override fun createFromParcel(parcel: Parcel): Screen {
-                return Screen(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Screen?> {
-                return arrayOfNulls(size)
-            }
-        }
-
-    }
-
+    @Parcelize
     data class GoToDetail(
         val issue: IssueEntryUi
-    ) : IssueListStateUi(), SingleEvent, Parcelable {
-        constructor(parcel: Parcel) : this(
-            parcel.readParcelable<IssueEntryUi>(IssueEntryUi::class.java.classLoader)!!
-        )
-
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeParcelable(issue, flags)
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<GoToDetail> {
-            override fun createFromParcel(parcel: Parcel): GoToDetail {
-                return GoToDetail(parcel)
-            }
-
-            override fun newArray(size: Int): Array<GoToDetail?> {
-                return arrayOfNulls(size)
-            }
-        }
-
-    }
+    ) : IssueListStateUi(), SingleEvent, Parcelable
 
     enum class Mode {
         LOADING, IDLE

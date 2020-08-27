@@ -4,9 +4,8 @@ object App {
 
     val plugins = listOf(
         "com.android.application",
-        "org.jetbrains.kotlin.android"
-        // "org.jetbrains.kotlin.android.extensions",
-        // Kotlin android extensiosn does not work well with Jetpack Compose
+        "org.jetbrains.kotlin.android",
+         "org.jetbrains.kotlin.android.extensions"
     )
 
     val implementations = listOf(

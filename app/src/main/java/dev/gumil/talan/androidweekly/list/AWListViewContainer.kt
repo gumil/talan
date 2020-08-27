@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.stateFor
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -32,8 +31,7 @@ import dev.gumil.talan.ui.SwipeToRefreshLayout
 
 internal class AWListViewContainer: AWListContainer {
 
-    private val state: MutableState<IssueListStateUi> = mutableStateOf(IssueListStateUi.Screen(
-        loadingMode = IssueListStateUi.Mode.LOADING)
+    private val state: MutableState<IssueListStateUi> = mutableStateOf(IssueListStateUi.Screen()
     )
 
     override var actions: (IssueListAction) -> Unit = {}
