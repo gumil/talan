@@ -34,7 +34,8 @@ class AndroidWeeklyViewModel(
         }
 
         on<IssueListAction.OnItemClick> {
-            IssueListState.GoToDetail(action.issue)
+            (currentState as IssueListState.Screen)
+                .copy(exception = RuntimeException())
         }
     }
 

@@ -1,8 +1,7 @@
 package dev.gumil.talan.androidweekly.list
 
-import androidx.compose.FrameManager
-import androidx.compose.MutableState
-import androidx.compose.mutableStateOf
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import dev.gumil.talan.FakeViewModel
 import dev.gumil.talan.TestDispatcherProvider
 import dev.gumil.talan.TestDispatcherRule
@@ -176,14 +175,10 @@ class AWListSceneTest {
         private val state: MutableState<IssueListStateUi> = mutableStateOf(initialState.mapToUiModel())
         override var actions: (IssueListAction) -> Unit = {}
         override val currentState: IssueListStateUi
-            get() = FrameManager.framed {
-                state.value
-            }
+            get() = state.value
 
         override fun setState(issueListStateUi: IssueListStateUi) {
-            FrameManager.framed {
-                state.value = issueListStateUi
-            }
+            state.value = issueListStateUi
         }
 
         override fun render() {}

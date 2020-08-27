@@ -1,5 +1,5 @@
 object App {
-    private const val compose = "0.1.0-dev14"
+    private const val compose = "1.0.0-alpha01"
     private const val acorn = "1.2.4"
 
     val plugins = listOf(
@@ -10,10 +10,10 @@ object App {
     )
 
     val implementations = listOf(
-        "androidx.appcompat:appcompat:1.1.0",
-        "androidx.ui:ui-core:$compose",
-        "androidx.ui:ui-layout:$compose",
-        "androidx.ui:ui-material:$compose",
+        "androidx.appcompat:appcompat:1.2.0",
+        "androidx.compose.ui:ui:$compose",
+        "androidx.compose.foundation:foundation-layout:$compose",
+        "androidx.compose.material:material:$compose",
         "androidx.ui:ui-tooling:$compose",
         "com.nhaarman.acorn.ext:acorn-android:$acorn",
         "com.nhaarman.acorn.ext:acorn-testing:$acorn"
@@ -23,7 +23,7 @@ object App {
         Coroutines.test
     )
     val androidTestImplementation = listOf(
-        "androidx.test.ext:junit:1.1.1",
-        "androidx.test.espresso:espresso-core:3.2.0"
+        "androidx.test.ext:junit:1.1.2",
+        "androidx.test.espresso:espresso-core:3.3.0"
     )
 }

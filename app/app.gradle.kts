@@ -22,15 +22,18 @@ android {
         jvmTarget = "1.8"
         freeCompilerArgs = listOf(
             "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            "-Xopt-in=kotlinx.coroutines.FlowPreview",
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xallow-jvm-ir-dependencies",
+            "-Xskip-prerelease-check"
         )
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "0.1.0-dev14"
-        kotlinCompilerVersion = "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
+        kotlinCompilerExtensionVersion = "1.0.0-alpha01"
+        kotlinCompilerVersion = "1.4.0"
     }
     packagingOptions {
         pickFirst("META-INF/ktor-client-serialization.kotlin_module")

@@ -2,7 +2,7 @@ package dev.gumil.talan.acorn
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.compose.MutableState
+import androidx.compose.runtime.MutableState
 import com.nhaarman.acorn.OnBackPressListener
 import com.nhaarman.acorn.android.navigation.NavigatorProvider
 import com.nhaarman.acorn.android.util.toBundle

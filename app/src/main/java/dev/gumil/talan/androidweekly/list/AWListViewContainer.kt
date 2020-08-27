@@ -1,29 +1,29 @@
 package dev.gumil.talan.androidweekly.list
 
-import androidx.compose.Composable
-import androidx.compose.MutableState
-import androidx.compose.mutableStateOf
-import androidx.compose.stateFor
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.clickable
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.Color
-import androidx.ui.layout.Column
-import androidx.ui.layout.Stack
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.padding
-import androidx.ui.layout.preferredSize
-import androidx.ui.material.Card
-import androidx.ui.material.CircularProgressIndicator
-import androidx.ui.material.ListItem
-import androidx.ui.material.Surface
-import androidx.ui.material.TopAppBar
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Stack
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredSize
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ListItem
+import androidx.compose.material.Surface
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.stateFor
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import dev.gumil.talan.androidweekly.EntryTypeUi
 import dev.gumil.talan.androidweekly.IssueEntryUi
 import dev.gumil.talan.androidweekly.mapToModel
@@ -54,7 +54,9 @@ internal class AWListViewContainer: AWListContainer {
 
     @Composable
     private fun screen(state: IssueListStateUi.Screen) {
-        val (showSnackbarError, updateShowSnackbarError) = stateFor(state) { state.exception != null }
+        val (showSnackbarError, updateShowSnackbarError) = remember(state) {
+            mutableStateOf(({ state.exception != null })())
+        }
 
         Stack {
             Column {
@@ -87,7 +89,7 @@ internal class AWListViewContainer: AWListContainer {
                 }
             }
         ) {
-            LazyColumnItems(state.issues) { item ->
+            LazyColumnFor(state.issues) { item ->
                 listItem(item = item)
             }
         }
@@ -96,8 +98,8 @@ internal class AWListViewContainer: AWListContainer {
     @Composable
     private fun listItem(item: IssueEntryUi) {
         Card(
-            shape = RoundedCornerShape(4.dp), color = Color.White,
-            modifier = (Modifier.fillMaxWidth() + Modifier.padding(8.dp))
+            shape = RoundedCornerShape(4.dp),
+            modifier = Modifier.fillMaxWidth().then(Modifier.padding(8.dp))
                 .clickable(onClick = {
                     actions(IssueListAction.OnItemClick(item.mapToModel()))
                 })

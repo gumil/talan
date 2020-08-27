@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.mutableStateOf
-import androidx.ui.animation.Crossfade
-import androidx.ui.core.setContent
-import androidx.ui.material.MaterialTheme
+import androidx.compose.animation.Crossfade
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.setContent
 import com.nhaarman.acorn.android.navigation.NavigatorProvider
 
 internal abstract class AcornComposeActivity: AppCompatActivity() {
