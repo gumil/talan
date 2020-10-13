@@ -1,11 +1,12 @@
 internal object Versions {
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.4.10"
     const val jacoco = "0.8.5"
     const val mockito = "2.2.0"
-    const val coroutines = "1.3.9"
+    // Ktor HttpClient needs native-mt
+    const val coroutines = "1.3.9-native-mt"
     const val kaskade = "0.4.2"
-    const val serialization = "1.0.0-RC"
-    const val ktor = "1.4.0"
+    const val serialization = "1.0.0"
+    const val ktor = "1.4.1"
 }
 
 internal object Common {
@@ -24,7 +25,7 @@ internal object Kaskade {
 
 internal object Serialization {
     val plugin = "org.jetbrains.kotlin.plugin.serialization" to Versions.kotlin
-    const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}"
+    const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.serialization}"
 }
 
 internal object Ktor {

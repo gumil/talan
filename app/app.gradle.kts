@@ -1,5 +1,5 @@
 plugins {
-    App.plugins.forEach(::id)
+    App.plugins.forEach { id(it) }
 }
 
 apply<plugin.AndroidConfigurationPlugin>()
@@ -32,7 +32,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-alpha01"
+        kotlinCompilerExtensionVersion = "1.0.0-alpha04"
         kotlinCompilerVersion = "1.4.0"
     }
     packagingOptions {
@@ -53,7 +53,7 @@ android {
 
 dependencies {
     implementation(project(":sharedClient"))
-    App.implementations.forEach(::implementation)
-    App.testImplementations.forEach(::testImplementation)
-    App.androidTestImplementation.forEach(::androidTestImplementation)
+    App.implementations.forEach{ implementation(it) }
+    App.testImplementations.forEach{ testImplementation(it) }
+    App.androidTestImplementation.forEach{ androidTestImplementation(it) }
 }

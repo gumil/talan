@@ -16,9 +16,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.2.0-alpha08")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.0")
-    implementation("com.squareup.sqldelight:gradle-plugin:1.4.1")
+    val kotlinVersion = "1.4.10"
+    implementation("com.android.tools.build:gradle:4.2.0-alpha13")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    implementation("com.squareup.sqldelight:gradle-plugin:1.4.4")
     implementation(gradleApi())
 }

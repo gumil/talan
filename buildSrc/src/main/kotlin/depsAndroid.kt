@@ -1,11 +1,11 @@
 object App {
-    private const val compose = "1.0.0-alpha01"
+    private const val compose = "1.0.0-alpha04"
     private const val acorn = "1.2.4"
 
     val plugins = listOf(
         "com.android.application",
         "org.jetbrains.kotlin.android",
-         "org.jetbrains.kotlin.android.extensions"
+        "org.jetbrains.kotlin.android.extensions"
     )
 
     val implementations = listOf(

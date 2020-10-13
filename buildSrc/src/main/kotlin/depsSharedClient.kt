@@ -7,7 +7,7 @@ object SharedClient {
     )
 
     val commonMain = listOf(
-        Serialization.core,
+        Serialization.json,
         Kaskade.coroutines,
         Coroutines.core,
         Ktor.core,
