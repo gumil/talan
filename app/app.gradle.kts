@@ -32,7 +32,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-alpha04"
+        kotlinCompilerExtensionVersion = App.compose
         kotlinCompilerVersion = "1.4.0"
     }
     packagingOptions {

@@ -1,5 +1,5 @@
 object App {
-    private const val compose = "1.0.0-alpha04"
+    const val compose = "1.0.0-alpha05"
     private const val acorn = "1.2.4"
 
     val plugins = listOf(
