@@ -1,9 +1,9 @@
-internal object Versions {
+object Versions {
     const val kotlin = "1.4.10"
     const val jacoco = "0.8.5"
     const val mockito = "2.2.0"
     // Ktor HttpClient needs native-mt
-    const val coroutines = "1.3.9-native-mt"
+    const val coroutines = "1.3.9-native-mt-2"
     const val kaskade = "0.4.2"
     const val serialization = "1.0.0"
     const val ktor = "1.4.1"
@@ -13,7 +13,7 @@ internal object Common {
     const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito}"
 }
 
-internal object Coroutines {
+object Coroutines {
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
 }

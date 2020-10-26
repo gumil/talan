@@ -11,6 +11,9 @@ kotlin {
         @Suppress("UNUSED_VARIABLE")
         val commonMain by getting {
             dependencies {
+                implementation(Coroutines.core) {
+                    version { strictly(Versions.coroutines) }
+                }
                 SharedClient.commonMain.forEach { implementation(it) }
                 SharedClient.commonMainApi.forEach { api(it) }
             }
@@ -37,8 +40,11 @@ kotlin {
             }
         }
 
-        sourceSets["iosMain"].dependencies {
-            SharedClient.nativeMain.forEach{ implementation(it) }
+        @Suppress("UNUSED_VARIABLE")
+        val iosMain by getting {
+            dependencies {
+                SharedClient.nativeMain.forEach{ implementation(it) }
+            }
         }
     }
 }

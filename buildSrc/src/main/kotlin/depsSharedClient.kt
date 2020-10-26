@@ -9,7 +9,8 @@ object SharedClient {
     val commonMain = listOf(
         Serialization.json,
         Kaskade.coroutines,
-        Coroutines.core,
+        // Coroutines is added to directly to exclude transitive dependencies
+        // Coroutines.core,
         Ktor.core,
         Ktor.json,
         Ktor.logging,
