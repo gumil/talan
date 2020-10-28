@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     val kotlinVersion = "1.4.10"
-    implementation("com.android.tools.build:gradle:4.2.0-alpha14")
+    implementation("com.android.tools.build:gradle:4.2.0-alpha15")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     implementation("com.squareup.sqldelight:gradle-plugin:1.4.4")

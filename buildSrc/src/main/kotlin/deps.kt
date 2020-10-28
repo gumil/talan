@@ -5,7 +5,7 @@ object Versions {
     // Ktor HttpClient needs native-mt
     const val coroutines = "1.3.9-native-mt-2"
     const val kaskade = "0.4.2"
-    const val serialization = "1.0.0"
+    const val serialization = "1.0.1"
     const val ktor = "1.4.1"
 }
 
