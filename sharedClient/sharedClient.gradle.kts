@@ -15,7 +15,6 @@ kotlin {
                     version { strictly(Versions.coroutines) }
                 }
                 SharedClient.commonMain.forEach { implementation(it) }
-                SharedClient.commonMainApi.forEach { api(it) }
             }
         }
 

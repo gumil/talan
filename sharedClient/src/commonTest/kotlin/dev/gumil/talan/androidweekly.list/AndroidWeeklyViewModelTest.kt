@@ -1,18 +1,15 @@
 package dev.gumil.talan.androidweekly.list
 
+import dev.gumil.talan.androidweekly.IssueEntryUi
 import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.network.FakeTalanApi
 import dev.gumil.talan.network.Issue
-import dev.gumil.talan.network.IssueEntry
 import dev.gumil.talan.network.TalanApi
 import dev.gumil.talan.runTest
 import dev.gumil.talan.util.TestDispatcherProvider
 import dev.gumil.talan.util.Verifier
-import dev.gumil.talan.util.verifyCollect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.yield
 import kotlin.random.Random
 import kotlin.test.Test
 
@@ -22,10 +19,11 @@ internal class AndroidWeeklyViewModelTest {
 
     private val api = FakeTalanApi()
 
-    private val viewModel = AndroidWeeklyViewModel(api, TestDispatcherProvider())
+    private val dispatcherProvider = TestDispatcherProvider()
+    private val viewModel = AndroidWeeklyViewModel(api, dispatcherProvider)
 
     private val issues = listOf(
-        IssueEntry(
+        IssueEntryUi(
             "title",
             "description",
             "image",
@@ -37,14 +35,13 @@ internal class AndroidWeeklyViewModelTest {
     )
 
     @Test
-    fun actionRefresh() = runTest {
+    fun actionRefresh() {
         val verifier = Verifier<IssueListState>()
-        val job = viewModel.state
-            .take(3)
-            .verifyCollect(this, verifier.function)
+        val viewModel = AndroidWeeklyViewModel(api, TestDispatcherProvider())
 
-        viewModel.dispatch(IssueListAction.Refresh)
-        job.join()
+        viewModel.state.subscribe(verifier.function)
+
+        viewModel.refresh()
 
         verifier.verifyOrder {
             verify(IssueListState.Screen())
@@ -54,15 +51,12 @@ internal class AndroidWeeklyViewModelTest {
     }
 
     @Test
-    fun actionOnItemClick() = runTest {
+    fun actionOnItemClick() {
         val verifier = Verifier<IssueListState>()
-        val job = viewModel.state
-            .take(2)
-            .verifyCollect(this, verifier.function)
 
-        yield() // Consume initial state
+        viewModel.state.subscribe(verifier.function)
 
-        val issue = IssueEntry(
+        val issue = IssueEntryUi(
             Random.nextInt().toString(),
             Random.nextInt().toString(),
             Random.nextInt().toString(),
@@ -72,8 +66,7 @@ internal class AndroidWeeklyViewModelTest {
             EntryType.ARTICLE
         )
 
-        viewModel.dispatch(IssueListAction.OnItemClick(issue))
-        job.join()
+        viewModel.onItemClick(issue)
 
         verifier.verifyOrder {
             verify(IssueListState.Screen())
@@ -82,7 +75,7 @@ internal class AndroidWeeklyViewModelTest {
     }
 
     @Test
-    fun actionRefresh_throws_error() = runTest {
+    fun actionRefresh_throws_error() {
         val exception = RuntimeException()
         val viewModel = AndroidWeeklyViewModel(object : TalanApi {
             override suspend fun getAndroidWeeklyIssues(): List<Issue> {
@@ -91,12 +84,9 @@ internal class AndroidWeeklyViewModelTest {
         }, TestDispatcherProvider())
 
         val verifier = Verifier<IssueListState>()
-        val job = viewModel.state
-            .take(3)
-            .verifyCollect(this, verifier.function)
+        viewModel.state.subscribe(verifier.function)
 
-        viewModel.dispatch(IssueListAction.Refresh)
-        job.join()
+        viewModel.refresh()
 
         verifier.verifyOrder {
             verify(IssueListState.Screen())

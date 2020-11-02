@@ -1,18 +1,12 @@
 package dev.gumil.talan.util
 
-import dev.gumil.kaskade.Action
-import dev.gumil.kaskade.State
+import com.arkivanov.decompose.instancekeeper.InstanceKeeper
+import com.arkivanov.decompose.value.Value
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.StateFlow
+
+interface State
 
 @ExperimentalCoroutinesApi
-interface ViewModel<A: Action, S: State> {
-
-    val state: StateFlow<S>
-
-    fun dispatch(action: A)
-
-    fun clear()
-
-    fun observe(observer: (S) -> Unit)
+interface ViewModel<S: State>: InstanceKeeper.Instance {
+    val state: Value<S>
 }

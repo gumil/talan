@@ -5,10 +5,10 @@ import kotlinx.coroutines.Dispatchers
 
 internal class TestDispatcherProvider: DispatcherProvider {
     override fun io(): CoroutineDispatcher {
-        return Dispatchers.Default
+        return Dispatchers.Unconfined
     }
 
     override fun main(): CoroutineDispatcher {
-        return Dispatchers.Default
+        return Dispatchers.Unconfined
     }
 }

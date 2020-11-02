@@ -1,24 +1,25 @@
 object SharedClient {
+    private const val decompose = "0.1.0"
+    private const val stately = "1.1.0"
+
     val plugins = listOf(
         "org.jetbrains.kotlin.multiplatform" to null,
         Serialization.plugin,
         "com.android.library" to null,
-        "com.squareup.sqldelight" to null
+        "com.squareup.sqldelight" to null,
+        "kotlin-android-extensions" to null
     )
 
     val commonMain = listOf(
         Serialization.json,
-        Kaskade.coroutines,
         // Coroutines is added to directly to exclude transitive dependencies
         // Coroutines.core,
         Ktor.core,
         Ktor.json,
         Ktor.logging,
-        Ktor.serialization
-    )
-
-    val commonMainApi = listOf(
-        Kaskade.core
+        Ktor.serialization,
+        "com.arkivanov.decompose:decompose:$decompose",
+        "co.touchlab:stately-common:$stately"
     )
 
     val commonTest = listOf(
