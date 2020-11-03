@@ -52,9 +52,6 @@ android {
 }
 
 dependencies {
-    implementation(Coroutines.core) {
-        version { strictly(Versions.coroutines) }
-    }
     implementation(project(":sharedClient"))
     App.implementations.forEach{ implementation(it) }
     App.testImplementations.forEach{ testImplementation(it) }
