@@ -1,5 +1,5 @@
 object SharedClient {
-    private const val decompose = "0.1.0"
+
     private const val stately = "1.1.0"
 
     val plugins = listOf(
@@ -18,7 +18,7 @@ object SharedClient {
         Ktor.json,
         Ktor.logging,
         Ktor.serialization,
-        "com.arkivanov.decompose:decompose:$decompose",
+        Decompose.core,
         "co.touchlab:stately-common:$stately"
     )
 

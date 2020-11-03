@@ -1,16 +1,27 @@
 package dev.gumil.talan
 
-import com.nhaarman.acorn.android.navigation.NavigatorProvider
-import dev.gumil.talan.acorn.AcornComposeActivity
-import dev.gumil.talan.acorn.ComposeContainerFactory
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.ui.platform.setContent
+import com.arkivanov.decompose.extensions.compose.rootComponent
+import dev.gumil.talan.androidweekly.invoke
+import dev.gumil.talan.androidweekly.root.AWRoot
 
-internal class MainActivity : AcornComposeActivity() {
+internal class MainActivity : AppCompatActivity() {
 
-    override fun provideNavigatorProvider(): NavigatorProvider {
-        return (application as TalanApp).navigatorProvider
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun provideComposeContainerFactory(): ComposeContainerFactory {
-        return MainContainerFactory()
+        setContent {
+            MaterialTheme {
+                Surface(color = MaterialTheme.colors.background) {
+                    rootComponent { componentContext ->
+                        AWRoot(componentContext)
+                    }.model()
+                }
+            }
+        }
     }
 }

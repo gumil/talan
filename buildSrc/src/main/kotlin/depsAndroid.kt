@@ -1,6 +1,9 @@
 object App {
-    private const val compose = "1.0.0-alpha06"
-    private const val acorn = "1.2.4"
+    /**
+     * This is currently being used in app.gradle.kts
+     */
+    @field:Suppress("MemberVisibilityCanBePrivate")
+    const val compose = "1.0.0-alpha06"
 
     val plugins = listOf(
         "com.android.application",
@@ -9,13 +12,13 @@ object App {
     )
 
     val implementations = listOf(
+        Decompose.core,
+        Decompose.compose,
         "androidx.appcompat:appcompat:1.2.0",
         "androidx.compose.ui:ui:$compose",
         "androidx.compose.foundation:foundation-layout:$compose",
         "androidx.compose.material:material:$compose",
-        "androidx.ui:ui-tooling:$compose",
-        "com.nhaarman.acorn.ext:acorn-android:$acorn",
-        "com.nhaarman.acorn.ext:acorn-testing:$acorn"
+        "androidx.ui:ui-tooling:$compose"
     )
     val testImplementations = listOf(
         "junit:junit:4.13",

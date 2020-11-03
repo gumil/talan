@@ -2,6 +2,7 @@ package dev.gumil.talan.androidweekly.list
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.instancekeeper.getOrCreate
+import com.arkivanov.decompose.lifecycle.doOnCreate
 import com.arkivanov.decompose.statekeeper.consume
 import com.arkivanov.decompose.value.Value
 import dev.gumil.talan.androidweekly.IssueEntryUi
@@ -32,8 +33,18 @@ internal class AWListContainer(
                 get() = viewModel.state
         }
 
+    init {
+        lifecycle.doOnCreate {
+            viewModel.refresh()
+        }
+    }
+
     override fun onItemClicked(issueEntry: IssueEntryUi) {
         viewModel.onItemClick(issueEntry)
+    }
+
+    override fun refresh() {
+        viewModel.refresh()
     }
 
     private companion object {

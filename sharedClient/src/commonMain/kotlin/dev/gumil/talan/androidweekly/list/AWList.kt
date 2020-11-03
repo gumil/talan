@@ -13,5 +13,7 @@ interface AWList {
 
     interface Events {
         fun onItemClicked(issueEntry: IssueEntryUi)
+
+        fun refresh()
     }
 }
