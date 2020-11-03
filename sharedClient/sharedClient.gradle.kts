@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
 plugins {
     SharedClient.plugins.forEach { (n, version) ->
         version?.let { id(n) version it } ?: id(n)
@@ -5,6 +7,12 @@ plugins {
 }
 
 apply<plugin.MultiplatformConfigurationPlugin>()
+
+android {
+    (this as ExtensionAware).extensions.configure<KotlinJvmOptions>("kotlinOptions") {
+        jvmTarget = "1.8"
+    }
+}
 
 kotlin {
     sourceSets {
