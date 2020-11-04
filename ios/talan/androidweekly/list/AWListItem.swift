@@ -11,7 +11,7 @@ import SwiftUI
 import SharedClient
 
 struct ListItem: View {
-    var issue: IssueEntry
+    var issue: IssueEntryUi
     
     var body: some View {
         HStack {
@@ -32,16 +32,16 @@ struct ListItem: View {
     }
 }
 
-struct ListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        ListItem(issue: IssueEntry(
-            title: "Optimize the build speed for your Android project",
-            description: "In this article, Tony Robalik takes a look at the Dependency Analysis Gradle Plugin. This plugin is uniquely designed to solve several build problems in the Android & JVM build ecosystems such as telling you which (if any) of your dependencies are unused and can be removed.",
-            image: "image",
-            link: "www.crazylegend.dev",
-            host: "www.crazylegend.dev",
-            isSponsored: false,
-            type: .article
-        ))
-    }
-}
+//struct ListItem_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListItem(issue: IssueEntry(
+//            title: "Optimize the build speed for your Android project",
+//            description: "In this article, Tony Robalik takes a look at the Dependency Analysis Gradle Plugin. This plugin is uniquely designed to solve several build problems in the Android & JVM build ecosystems such as telling you which (if any) of your dependencies are unused and can be removed.",
+//            image: "image",
+//            link: "www.crazylegend.dev",
+//            host: "www.crazylegend.dev",
+//            isSponsored: false,
+//            type: .article
+//        ))
+//    }
+//}

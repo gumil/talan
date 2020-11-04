@@ -3,9 +3,9 @@ package dev.gumil.talan.androidweekly.list
 import com.arkivanov.decompose.statekeeper.Parcelable
 import com.arkivanov.decompose.statekeeper.Parcelize
 import dev.gumil.talan.androidweekly.IssueEntryUi
-import dev.gumil.talan.util.State
+import dev.gumil.talan.util.StateUi
 
-sealed class IssueListState : State {
+sealed class IssueListState : StateUi {
 
     @Parcelize
     data class Screen(
