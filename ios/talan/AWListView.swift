@@ -13,7 +13,7 @@ struct AWListView: View {
     private let events: AWListEvents
 
     @ObservedObject
-    private var data: ObservableValue<IssueListState>
+    private var data: ObservableValue<AWListScreen>
     
     init(_ model: AWListModel) {
         self.events = model
@@ -21,7 +21,7 @@ struct AWListView: View {
     }
     
     var body: some View {
-        List((self.data.value as! IssueListState.Screen).issues, id: \.title) { item in
+        List(self.data.value.issues, id: \.title) { item in
             ListItem(issue: item)
         }
     }

@@ -21,27 +21,18 @@ import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.arkivanov.decompose.extensions.compose.observe
 import dev.gumil.talan.androidweekly.list.AWList
-import dev.gumil.talan.androidweekly.list.IssueListState
 import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.ui.SwipeToRefreshLayout
 
 @Composable
 operator fun AWList.Model.invoke() {
     state.observe {
-        render(it, this)
+        screen(it, this)
     }
 }
 
 @Composable
-private fun render(state: IssueListState, events: AWList.Events) {
-    return when (state) {
-        is IssueListState.Screen -> screen(state, events)
-        is IssueListState.GoToDetail -> TODO()
-    }
-}
-
-@Composable
-private fun screen(state: IssueListState.Screen, events: AWList.Events) {
+private fun screen(state: AWList.Screen, events: AWList.Events) {
     Box {
         Column {
             toolbar()
@@ -58,9 +49,9 @@ private fun toolbar() {
 }
 
 @Composable
-private fun content(state: IssueListState.Screen, events: AWList.Events) {
+private fun content(state: AWList.Screen, events: AWList.Events) {
     SwipeToRefreshLayout(
-        refreshingState = state.loadingMode == IssueListState.Mode.LOADING,
+        refreshingState = state.loadingMode == AWList.Mode.LOADING,
         onRefresh = { events.refresh() },
         refreshIndicator = {
             Surface(elevation = 10.dp, shape = CircleShape) {
@@ -115,7 +106,7 @@ fun listPreview() {
             EntryType.ARTICLE
         )
     }
-    screen(IssueListState.Screen(items, IssueListState.Mode.IDLE), object : AWList.Events {
+    screen(AWList.Screen(items, AWList.Mode.IDLE), object : AWList.Events {
         override fun onItemClicked(issueEntry: IssueEntryUi) {}
         override fun refresh() {}
     })

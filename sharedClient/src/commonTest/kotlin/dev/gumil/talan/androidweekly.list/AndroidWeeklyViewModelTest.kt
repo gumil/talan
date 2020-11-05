@@ -5,12 +5,11 @@ import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.network.FakeTalanApi
 import dev.gumil.talan.network.Issue
 import dev.gumil.talan.network.TalanApi
-import dev.gumil.talan.runTest
 import dev.gumil.talan.util.TestDispatcherProvider
 import dev.gumil.talan.util.Verifier
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlin.random.Random
+import kotlin.js.JsName
 import kotlin.test.Test
 
 @FlowPreview
@@ -18,9 +17,6 @@ import kotlin.test.Test
 internal class AndroidWeeklyViewModelTest {
 
     private val api = FakeTalanApi()
-
-    private val dispatcherProvider = TestDispatcherProvider()
-    private val viewModel = AndroidWeeklyViewModel(api, dispatcherProvider)
 
     private val issues = listOf(
         IssueEntryUi(
@@ -35,8 +31,22 @@ internal class AndroidWeeklyViewModelTest {
     )
 
     @Test
+    @JsName("when_initialized_should_call_refresh")
+    fun `when initialized should call refresh`() {
+        val verifier = Verifier<AWList.Screen>()
+        val viewModel = AndroidWeeklyViewModel(api, TestDispatcherProvider())
+
+        viewModel.state.subscribe(verifier.function)
+
+        verifier.verifyOrder {
+            // initial call to refresh
+            verify(AWList.Screen(issues, AWList.Mode.IDLE))
+        }
+    }
+
+    @Test
     fun actionRefresh() {
-        val verifier = Verifier<IssueListState>()
+        val verifier = Verifier<AWList.Screen>()
         val viewModel = AndroidWeeklyViewModel(api, TestDispatcherProvider())
 
         viewModel.state.subscribe(verifier.function)
@@ -44,33 +54,12 @@ internal class AndroidWeeklyViewModelTest {
         viewModel.refresh()
 
         verifier.verifyOrder {
-            verify(IssueListState.Screen())
-            verify(IssueListState.Screen(emptyList(), IssueListState.Mode.LOADING))
-            verify(IssueListState.Screen(issues, IssueListState.Mode.IDLE))
-        }
-    }
+            // initial call to refresh
+            verify(AWList.Screen(issues, AWList.Mode.IDLE))
 
-    @Test
-    fun actionOnItemClick() {
-        val verifier = Verifier<IssueListState>()
-
-        viewModel.state.subscribe(verifier.function)
-
-        val issue = IssueEntryUi(
-            Random.nextInt().toString(),
-            Random.nextInt().toString(),
-            Random.nextInt().toString(),
-            Random.nextInt().toString(),
-            Random.nextInt().toString(),
-            Random.nextBoolean(),
-            EntryType.ARTICLE
-        )
-
-        viewModel.onItemClick(issue)
-
-        verifier.verifyOrder {
-            verify(IssueListState.Screen())
-            verify(IssueListState.GoToDetail(issue))
+            // actual call to refresh
+            verify(AWList.Screen(issues, AWList.Mode.LOADING))
+            verify(AWList.Screen(issues, AWList.Mode.IDLE))
         }
     }
 
@@ -83,15 +72,11 @@ internal class AndroidWeeklyViewModelTest {
             }
         }, TestDispatcherProvider())
 
-        val verifier = Verifier<IssueListState>()
+        val verifier = Verifier<AWList.Screen>()
         viewModel.state.subscribe(verifier.function)
 
-        viewModel.refresh()
-
         verifier.verifyOrder {
-            verify(IssueListState.Screen())
-            verify(IssueListState.Screen(loadingMode = IssueListState.Mode.LOADING))
-            verify(IssueListState.Screen(loadingMode = IssueListState.Mode.IDLE, exception = exception))
+            verify(AWList.Screen(loadingMode = AWList.Mode.IDLE, exception = exception))
         }
     }
 }

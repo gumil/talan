@@ -2,7 +2,6 @@ package dev.gumil.talan.androidweekly.list
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.instancekeeper.getOrCreate
-import com.arkivanov.decompose.lifecycle.doOnCreate
 import com.arkivanov.decompose.statekeeper.consume
 import com.arkivanov.decompose.value.Value
 import dev.gumil.talan.androidweekly.IssueEntryUi
@@ -15,11 +14,11 @@ import kotlinx.coroutines.FlowPreview
 internal class AWListContainer(
     componentContext: ComponentContext,
     appComponent: AppComponent
-): AWList, AWList.Events,  ComponentContext by componentContext {
+): AWList, AWList.Events, ComponentContext by componentContext {
 
     private val viewModel =
         instanceKeeper.getOrCreate {
-            val state: IssueListState = stateKeeper.consume(KEY_STATE) ?: IssueListState.Screen()
+            val state = stateKeeper.consume(KEY_STATE) ?: AWList.Screen()
             AndroidWeeklyViewModel(
                 appComponent.talanApi,
                 appComponent.dispatcherProvider,
@@ -27,20 +26,18 @@ internal class AWListContainer(
             )
         }
 
+    init {
+        stateKeeper.register(KEY_STATE) { viewModel.state.value }
+    }
+
     override val model: AWList.Model =
         object : AWList.Model, AWList.Events by this {
-            override val state: Value<IssueListState>
+            override val state: Value<AWList.Screen>
                 get() = viewModel.state
         }
 
-    init {
-        lifecycle.doOnCreate {
-            viewModel.refresh()
-        }
-    }
-
     override fun onItemClicked(issueEntry: IssueEntryUi) {
-        viewModel.onItemClick(issueEntry)
+        // call router to change screens
     }
 
     override fun refresh() {

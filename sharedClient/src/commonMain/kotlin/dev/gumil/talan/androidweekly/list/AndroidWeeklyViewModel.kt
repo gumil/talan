@@ -15,7 +15,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
@@ -28,19 +27,20 @@ import kotlinx.coroutines.launch
 class AndroidWeeklyViewModel(
     private val talanApi: TalanApi,
     private val dispatcherProvider: DispatcherProvider,
-    initialState: IssueListState = IssueListState.Screen()
-) : ViewModel<IssueListState> {
+    initialState: AWList.Screen = AWList.Screen()
+) : ViewModel<AWList.Screen> {
 
     private val job = Job()
 
     private val uiScope = CoroutineScope(dispatcherProvider.main() + job)
 
-    override val state: Value<IssueListState> get() = _state
+    override val state: Value<AWList.Screen> get() = _state
 
     private val _state = MutableValue(initialState)
 
     init {
         ensureNeverFrozen()
+        refresh()
     }
 
     fun refresh() {
@@ -51,33 +51,27 @@ class AndroidWeeklyViewModel(
         }
     }
 
-    fun onItemClick(issue: IssueEntryUi) {
-        _state.value = IssueListState.GoToDetail(issue)
-    }
-
     override fun onDestroy() {
         job.cancel()
     }
 
-    private fun getLatestAndroidWeeklyFlow(): Flow<IssueListState> {
+    private fun getLatestAndroidWeeklyFlow(): Flow<AWList.Screen> {
         return flowOf(state.value)
-            .filter { it is IssueListState.Screen }
             .flatMapConcat { currentState ->
-                val state = currentState as IssueListState.Screen
-                flow<IssueListState> {
+                flow {
                     emit(
-                        IssueListState.Screen(
+                        AWList.Screen(
                             talanApi.getAndroidWeeklyIssues()
                                 .first()
                                 .entries
                                 .map { it.toUiModel() },
-                            IssueListState.Mode.IDLE
+                            AWList.Mode.IDLE
                         )
                     )
                 }.onStart {
-                    emit(state.copy(loadingMode = IssueListState.Mode.LOADING))
+                    emit(currentState.copy(loadingMode = AWList.Mode.LOADING))
                 }.catch { cause ->
-                    emit(state.copy(loadingMode = IssueListState.Mode.IDLE, exception = cause))
+                    emit(currentState.copy(loadingMode = AWList.Mode.IDLE, exception = cause))
                 }
             }
             .flowOn(dispatcherProvider.io())
