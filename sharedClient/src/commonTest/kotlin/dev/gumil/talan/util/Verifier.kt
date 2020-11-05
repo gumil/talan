@@ -1,9 +1,5 @@
 package dev.gumil.talan.util
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -41,6 +37,3 @@ internal class Verifier<T> {
         }
     }
 }
-
-fun <T> Flow<T>.verifyCollect(coroutineScope: CoroutineScope, action: (value: T) -> Unit) =
-    onEach { action(it) }.launchIn(coroutineScope)
