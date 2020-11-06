@@ -5,6 +5,7 @@ import com.arkivanov.decompose.instancekeeper.getOrCreate
 import com.arkivanov.decompose.statekeeper.consume
 import com.arkivanov.decompose.value.Value
 import dev.gumil.talan.androidweekly.IssueEntryUi
+import dev.gumil.talan.androidweekly.root.AWRoot
 import dev.gumil.talan.di.AppComponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -13,6 +14,7 @@ import kotlinx.coroutines.FlowPreview
 @ExperimentalCoroutinesApi
 internal class AWListContainer(
     componentContext: ComponentContext,
+    private val navigation: AWRoot.Navigation,
     appComponent: AppComponent
 ): AWList, AWList.Events, ComponentContext by componentContext {
 
@@ -37,7 +39,7 @@ internal class AWListContainer(
         }
 
     override fun onItemClicked(issueEntry: IssueEntryUi) {
-        // call router to change screens
+        navigation.navigateToDetail(issueEntry)
     }
 
     override fun refresh() {

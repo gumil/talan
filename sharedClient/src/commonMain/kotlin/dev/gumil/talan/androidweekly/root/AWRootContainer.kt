@@ -6,6 +6,7 @@ import com.arkivanov.decompose.router
 import com.arkivanov.decompose.statekeeper.Parcelable
 import com.arkivanov.decompose.statekeeper.Parcelize
 import com.arkivanov.decompose.value.Value
+import dev.gumil.talan.androidweekly.IssueEntryUi
 import dev.gumil.talan.androidweekly.list.AWList
 import dev.gumil.talan.androidweekly.list.AWListContainer
 import dev.gumil.talan.di.AppComponent
@@ -17,7 +18,7 @@ import kotlinx.coroutines.FlowPreview
 internal class AWRootContainer(
     componentContext: ComponentContext,
     private val appComponent: AppComponent
-) : AWRoot, ComponentContext by componentContext {
+) : AWRoot, AWRoot.Navigation, ComponentContext by componentContext {
 
     private val router =
         router<Configuration, AWRoot.Child>(
@@ -39,10 +40,14 @@ internal class AWRootContainer(
         }
 
     private fun list(componentContext: ComponentContext): AWList =
-        AWListContainer(componentContext, appComponent)
+        AWListContainer(componentContext, this, appComponent)
 
     private sealed class Configuration : Parcelable {
         @Parcelize
         object List : Configuration()
+    }
+
+    override fun navigateToDetail(issueEntryUi: IssueEntryUi) {
+        // call router to change screens
     }
 }
