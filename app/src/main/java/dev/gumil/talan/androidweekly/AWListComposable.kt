@@ -25,7 +25,7 @@ import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.ui.SwipeToRefreshLayout
 
 @Composable
-operator fun AWList.Model.invoke() {
+fun AWList.Model.render() {
     state.observe {
         screen(it, this)
     }

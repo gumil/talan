@@ -16,6 +16,7 @@ interface AWRoot {
 
     interface Model {
         val routerState: Value<RouterState<*, Child>>
+        val navigateToWebView: Value<IssueEntryUi>
     }
 
     sealed class Child {

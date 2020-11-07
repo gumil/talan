@@ -2,18 +2,19 @@ package dev.gumil.talan.androidweekly
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
-import dev.gumil.talan.androidweekly.root.AWRoot
 import com.arkivanov.decompose.extensions.compose.children
+import dev.gumil.talan.androidweekly.root.AWRoot
 
 @Composable
-operator fun AWRoot.Model.invoke() {
+fun AWRoot.Model.render(navigate: (IssueEntryUi) -> Unit) {
     routerState.children { child, configuration ->
         Crossfade(currentChild = child, currentKey = configuration) { currentChild ->
             when (currentChild) {
-                is AWRoot.Child.List -> currentChild.model()
+                is AWRoot.Child.List -> currentChild.model.render()
             }
         }
     }
+    navigateToWebView.subscribe(navigate)
 }
 
 @Composable

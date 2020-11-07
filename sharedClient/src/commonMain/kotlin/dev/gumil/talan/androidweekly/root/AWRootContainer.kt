@@ -10,6 +10,7 @@ import dev.gumil.talan.androidweekly.IssueEntryUi
 import dev.gumil.talan.androidweekly.list.AWList
 import dev.gumil.talan.androidweekly.list.AWListContainer
 import dev.gumil.talan.di.AppComponent
+import dev.gumil.talan.util.UninitializedValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
@@ -27,8 +28,15 @@ internal class AWRootContainer(
             componentFactory = ::resolveChild
         )
 
+    private val navigateToWeb = UninitializedValue<IssueEntryUi>()
+
     override val model: AWRoot.Model = object : AWRoot.Model {
         override val routerState: Value<RouterState<*, AWRoot.Child>> = router.state
+        override val navigateToWebView: Value<IssueEntryUi> = navigateToWeb
+    }
+
+    override fun navigateToDetail(issueEntryUi: IssueEntryUi) {
+        navigateToWeb.setValue(issueEntryUi)
     }
 
     private fun resolveChild(
@@ -45,9 +53,5 @@ internal class AWRootContainer(
     private sealed class Configuration : Parcelable {
         @Parcelize
         object List : Configuration()
-    }
-
-    override fun navigateToDetail(issueEntryUi: IssueEntryUi) {
-        // call router to change screens
     }
 }

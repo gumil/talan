@@ -18,7 +18,8 @@ object App {
         "androidx.compose.ui:ui:$compose",
         "androidx.compose.foundation:foundation-layout:$compose",
         "androidx.compose.material:material:$compose",
-        "androidx.ui:ui-tooling:$compose"
+        "androidx.ui:ui-tooling:$compose",
+        "androidx.browser:browser:1.2.0"
     )
     val testImplementations = listOf(
         "junit:junit:4.13",
