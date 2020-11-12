@@ -10,14 +10,14 @@ import SwiftUI
 import SharedClient
 
 public class ObservableValue<T : AnyObject> : ObservableObject {
-    private let observableValue: DecomposeValue<T>
+    private let observableValue: Value<T>
     
     @Published
     var value: T
     
     private var observer: ((T) -> Void)?
     
-    init(_ value: DecomposeValue<T>) {
+    init(_ value: Value<T>) {
         self.observableValue = value
         self.value = observableValue.value
         

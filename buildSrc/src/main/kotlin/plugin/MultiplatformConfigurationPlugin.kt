@@ -33,6 +33,8 @@ class MultiplatformConfigurationPlugin : Plugin<Project> {
                 binaries {
                     framework {
                         baseName = "SharedClient"
+                        export(Decompose.core)
+                        transitiveExport = true
                     }
                 }
             }

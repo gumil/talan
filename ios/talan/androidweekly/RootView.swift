@@ -10,7 +10,7 @@ import SwiftUI
 import SharedClient
 
 struct RootView: View {
-    private let routerState: DecomposeValue<DecomposeRouterState<AnyObject, AWRootChild>>
+    private let routerState: Value<RouterState<AnyObject, AWRootChild>>
 
     init(_ model: AWRootModel) {
         self.routerState = model.routerState

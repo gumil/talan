@@ -23,6 +23,7 @@ kotlin {
                     version { strictly(Versions.coroutines) }
                 }
                 SharedClient.commonMain.forEach { implementation(it) }
+                SharedClient.commonApi.forEach { api(it) }
             }
         }
 

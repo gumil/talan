@@ -74,8 +74,8 @@
 		00A2531A24B7C3D500FB9C6C /* talanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A2531E24B7C3D500FB9C6C /* talanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talanUITests.swift; sourceTree = "<group>"; };
 		00A2532024B7C3D500FB9C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00AD41B52553359200FEB3E8 /* ObservableValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ObservableValue.swift; path = talan/ObservableValue.swift; sourceTree = SOURCE_ROOT; };
-		00AD41B62553359200FEB3E8 /* MutableStateBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MutableStateBuilder.swift; path = talan/MutableStateBuilder.swift; sourceTree = SOURCE_ROOT; };
+		00AD41B52553359200FEB3E8 /* ObservableValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ObservableValue.swift; path = talan/Util/ObservableValue.swift; sourceTree = SOURCE_ROOT; };
+		00AD41B62553359200FEB3E8 /* MutableStateBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MutableStateBuilder.swift; path = talan/Util/MutableStateBuilder.swift; sourceTree = SOURCE_ROOT; };
 		00AD41B9255344A700FEB3E8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		00AD41BB255345C300FEB3E8 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		00AD41BD2553472200FEB3E8 /* ViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExt.swift; sourceTree = "<group>"; };
@@ -118,6 +118,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		009B43A6255DCC54006A7528 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				00AD41B62553359200FEB3E8 /* MutableStateBuilder.swift */,
+				00AD41B52553359200FEB3E8 /* ObservableValue.swift */,
+				00AD41BD2553472200FEB3E8 /* ViewExt.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		00A252F024B7C3D400FB9C6C = {
 			isa = PBXGroup;
 			children = (
@@ -144,18 +154,13 @@
 			children = (
 				00A2530224B7C3D500FB9C6C /* Assets.xcassets */,
 				00A2530424B7C3D500FB9C6C /* Preview Content */,
-				00C2A34624C8D25200198EFB /* androidweekly */,
 				00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */,
 				00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */,
 				00A2530024B7C3D400FB9C6C /* ContentView.swift */,
-				00AD41B62553359200FEB3E8 /* MutableStateBuilder.swift */,
-				00AD41B52553359200FEB3E8 /* ObservableValue.swift */,
 				00A2530724B7C3D500FB9C6C /* LaunchScreen.storyboard */,
 				00A2530A24B7C3D500FB9C6C /* Info.plist */,
-				00AD41B9255344A700FEB3E8 /* RootView.swift */,
-				00AD41BB255345C300FEB3E8 /* RouterView.swift */,
-				00AD41BD2553472200FEB3E8 /* ViewExt.swift */,
-				00AD41C12553488900FEB3E8 /* AWListView.swift */,
+				00C2A34624C8D25200198EFB /* androidweekly */,
+				009B43A6255DCC54006A7528 /* Util */,
 			);
 			path = talan;
 			sourceTree = "<group>";
@@ -190,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				00C2A34724C8D26000198EFB /* list */,
+				00AD41B9255344A700FEB3E8 /* RootView.swift */,
+				00AD41BB255345C300FEB3E8 /* RouterView.swift */,
 			);
 			path = androidweekly;
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 		00C2A34724C8D26000198EFB /* list */ = {
 			isa = PBXGroup;
 			children = (
+				00AD41C12553488900FEB3E8 /* AWListView.swift */,
 				00C2A34824C8D27E00198EFB /* AWListItem.swift */,
 			);
 			path = list;

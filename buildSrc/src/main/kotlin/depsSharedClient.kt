@@ -18,8 +18,11 @@ object SharedClient {
         Ktor.json,
         Ktor.logging,
         Ktor.serialization,
-        Decompose.core,
         "co.touchlab:stately-common:$stately"
+    )
+
+    val commonApi = listOf(
+        Decompose.core
     )
 
     val commonTest = listOf(

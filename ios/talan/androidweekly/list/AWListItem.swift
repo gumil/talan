@@ -16,7 +16,7 @@ struct ListItem: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(issue.link)
+                Text(issue.host)
                     .font(.system(size: 10))
                     .kerning(1.5)
                     .padding(.bottom)

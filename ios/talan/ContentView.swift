@@ -11,15 +11,15 @@ import SharedClient
 
 struct ContentView: View {
     @State
-    private var wrapper =
-        ComponentHolderWrapper {
+    private var componentHolder =
+        ComponentHolder {
             AWRootKt.AWRoot(componentContext: $0, appComponent: MainAppComponent())
     }
     
     var body: some View {
-        RootView(wrapper.componentHolder.component!.model)
-            .onAppear { LifecycleRegistryExtKt.resume(self.wrapper.componentHolder.lifecycle) }
-            .onDisappear { LifecycleRegistryExtKt.stop(self.wrapper.componentHolder.lifecycle) }
+        RootView(componentHolder.component.model)
+        .onAppear { LifecycleRegistryExtKt.resume(self.componentHolder.lifecycle) }
+        .onDisappear { LifecycleRegistryExtKt.stop(self.componentHolder.lifecycle) }
     }
 }
 
@@ -29,15 +29,20 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-class ComponentHolderWrapper<T: AnyObject> {
-    let componentHolder: ComponentHolder<T>
+class ComponentHolder<T> {
+    let lifecycle: LifecycleRegistry
+    let component: T
     
-    init(componentFactory: @escaping (DecomposeComponentContext) -> T) {
-        self.componentHolder = ComponentHolder(factory: componentFactory)
-        componentHolder.doInit()
+    init(factory: (ComponentContext) -> T) {
+        let lifecycle = LifecycleRegistryKt.LifecycleRegistry()
+        let component = factory(DefaultComponentContext(lifecycle: lifecycle))
+        self.lifecycle = lifecycle
+        self.component = component
+        
+        lifecycle.onCreate()
     }
     
     deinit {
-        componentHolder.deInit()
+        lifecycle.onPause()
     }
 }

@@ -9,6 +9,6 @@
 import Foundation
 import SharedClient
 
-func mutableValue<T: AnyObject>(_ initialValue: T) -> DecomposeMutableValue<T> {
-    return MutableStateBuilderKt.mutableValue(initialValue: initialValue) as! DecomposeMutableValue<T>
+func mutableValue<T: AnyObject>(_ initialValue: T) -> MutableValue<T> {
+    return MutableValueBuilderKt.MutableValue(initialValue: initialValue) as! MutableValue<T>
 }
