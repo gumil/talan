@@ -22,11 +22,10 @@ struct RouterView<T : Hashable & AnyObject, Content : View> : View {
     var body: some View {
         let routerState = self.state.value
         
-        let backstack =
-            routerState
-                .backStack
-                .compactMap { $0 as? RouterStateEntryCreated }
-                .map { $0.component }
+        let backstack = routerState
+            .backStack
+            .compactMap { $0 as? RouterStateEntryCreated }
+            .map { $0.component }
         
         return ZStack {
             ForEach(backstack, id: \.hashValue) {

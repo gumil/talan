@@ -11,15 +11,14 @@ import SharedClient
 
 struct ContentView: View {
     @State
-    private var componentHolder =
-        ComponentHolder {
-            AWRootKt.AWRoot(componentContext: $0, appComponent: MainAppComponent())
+    private var componentHolder = ComponentHolder {
+        AWRootKt.AWRoot(componentContext: $0, appComponent: MainAppComponent())
     }
     
     var body: some View {
         RootView(componentHolder.component.model)
-        .onAppear { LifecycleRegistryExtKt.resume(self.componentHolder.lifecycle) }
-        .onDisappear { LifecycleRegistryExtKt.stop(self.componentHolder.lifecycle) }
+            .onAppear { LifecycleRegistryExtKt.resume(self.componentHolder.lifecycle) }
+            .onDisappear { LifecycleRegistryExtKt.stop(self.componentHolder.lifecycle) }
     }
 }
 

@@ -14,6 +14,10 @@ struct RootView: View {
 
     init(_ model: AWRootModel) {
         self.routerState = model.routerState
+        model.navigateToWebView.subscribe { value in
+            guard let url = URL(string: value.link) else { return }
+            UIApplication.shared.open(url)
+        }
     }
     
     var body: some View {

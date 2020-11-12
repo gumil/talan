@@ -10,9 +10,9 @@
 		00045AC124C3B30700A0BFDC /* SharedClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; };
 		00045AC224C3B30800A0BFDC /* SharedClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00045AC424C3B32700A0BFDC /* SharedClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00045AC024C3B30700A0BFDC /* SharedClient.framework */; };
+		009B43A7255DD20C006A7528 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2530024B7C3D400FB9C6C /* ContentView.swift */; };
 		00A252FD24B7C3D400FB9C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A252FC24B7C3D400FB9C6C /* AppDelegate.swift */; };
 		00A252FF24B7C3D400FB9C6C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A252FE24B7C3D400FB9C6C /* SceneDelegate.swift */; };
-		00A2530124B7C3D400FB9C6C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2530024B7C3D400FB9C6C /* ContentView.swift */; };
 		00A2530324B7C3D500FB9C6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A2530224B7C3D500FB9C6C /* Assets.xcassets */; };
 		00A2530624B7C3D500FB9C6C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A2530524B7C3D500FB9C6C /* Preview Assets.xcassets */; };
 		00A2530924B7C3D500FB9C6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00A2530724B7C3D500FB9C6C /* LaunchScreen.storyboard */; };
@@ -370,8 +370,8 @@
 				00A252FF24B7C3D400FB9C6C /* SceneDelegate.swift in Sources */,
 				00AD41BC255345C300FEB3E8 /* RouterView.swift in Sources */,
 				00AD41B82553359200FEB3E8 /* MutableStateBuilder.swift in Sources */,
+				009B43A7255DD20C006A7528 /* ContentView.swift in Sources */,
 				00AD41B72553359200FEB3E8 /* ObservableValue.swift in Sources */,
-				00A2530124B7C3D400FB9C6C /* ContentView.swift in Sources */,
 				00C2A34924C8D27E00198EFB /* AWListItem.swift in Sources */,
 				00AD41C22553488900FEB3E8 /* AWListView.swift in Sources */,
 			);

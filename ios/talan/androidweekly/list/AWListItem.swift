@@ -12,23 +12,28 @@ import SharedClient
 
 struct ListItem: View {
     var issue: IssueEntryUi
+    var onClick: (IssueEntryUi) -> ()
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(issue.host)
-                    .font(.system(size: 10))
-                    .kerning(1.5)
-                    .padding(.bottom)
-                Text(issue.title)
-                    .font(.system(size: 16))
-                    .bold()
-                    .padding(.bottom)
-                Text(issue.component2())
-                    .font(.system(size: 16))
-            }
-            Spacer()
-        }.padding()
+        Button(action: {
+            self.onClick(self.issue)
+        }) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(issue.host)
+                        .font(.system(size: 10))
+                        .kerning(1.5)
+                        .padding(.bottom)
+                    Text(issue.title)
+                        .font(.system(size: 16))
+                        .bold()
+                        .padding(.bottom)
+                    Text(issue.component2())
+                        .font(.system(size: 16))
+                }
+                Spacer()
+            }.padding()
+        }
     }
 }
 

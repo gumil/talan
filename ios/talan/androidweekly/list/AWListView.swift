@@ -22,7 +22,9 @@ struct AWListView: View {
     
     var body: some View {
         List(self.data.value.issues, id: \.title) { item in
-            ListItem(issue: item)
+            ListItem(issue: item, onClick: { issue in
+                self.events.onItemClicked(issueEntry: issue)
+            })
         }
     }
 }
