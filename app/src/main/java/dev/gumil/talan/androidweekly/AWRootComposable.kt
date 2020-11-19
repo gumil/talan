@@ -3,7 +3,7 @@ package dev.gumil.talan.androidweekly
 import androidx.compose.animation.Crossfade
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import com.arkivanov.decompose.extensions.compose.children
+import com.arkivanov.decompose.extensions.compose.jetpack.children
 import dev.gumil.talan.androidweekly.root.AWRoot
 
 @Composable

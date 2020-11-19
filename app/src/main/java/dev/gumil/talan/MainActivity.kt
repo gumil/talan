@@ -7,7 +7,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.platform.setContent
-import com.arkivanov.decompose.extensions.compose.rootComponent
+import com.arkivanov.decompose.extensions.compose.jetpack.rootComponent
 import dev.gumil.talan.androidweekly.render
 import dev.gumil.talan.androidweekly.root.AWRoot
 

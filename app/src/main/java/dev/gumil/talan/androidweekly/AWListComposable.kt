@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.arkivanov.decompose.extensions.compose.observe
+import com.arkivanov.decompose.extensions.compose.jetpack.observe
 import dev.gumil.talan.androidweekly.list.AWList
 import dev.gumil.talan.network.EntryType
 import dev.gumil.talan.ui.SwipeToRefreshLayout

@@ -7,7 +7,7 @@ object Versions {
     const val kaskade = "0.4.2"
     const val serialization = "1.0.1"
     const val ktor = "1.4.1"
-    const val decompose = "0.1.0"
+    const val decompose = "0.1.2"
 }
 
 internal object Common {
@@ -41,5 +41,5 @@ internal object Ktor {
 
 internal object Decompose {
     const val core = "com.arkivanov.decompose:decompose:${Versions.decompose}"
-    const val compose = "com.arkivanov.decompose:extensions-compose:${Versions.decompose}"
+    const val compose = "com.arkivanov.decompose:extensions-compose-jetpack:${Versions.decompose}"
 }
