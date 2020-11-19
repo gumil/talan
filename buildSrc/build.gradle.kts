@@ -21,5 +21,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     implementation("com.squareup.sqldelight:gradle-plugin:1.4.4")
+    implementation("com.github.ben-manes:gradle-versions-plugin:0.36.0")
     implementation(gradleApi())
 }
