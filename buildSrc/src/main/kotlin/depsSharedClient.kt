@@ -1,7 +1,5 @@
 object SharedClient {
 
-    private const val stately = "1.1.0"
-
     val plugins = listOf(
         "org.jetbrains.kotlin.multiplatform" to null,
         Serialization.plugin,
@@ -18,7 +16,7 @@ object SharedClient {
         Ktor.json,
         Ktor.logging,
         Ktor.serialization,
-        "co.touchlab:stately-common:$stately"
+        "co.touchlab:stately-common:1.1.1"
     )
 
     val commonApi = listOf(
