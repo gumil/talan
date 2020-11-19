@@ -17,7 +17,7 @@ interface AWList {
     @Parcelize
     data class Screen(
         val issues: List<IssueEntryUi> = emptyList(),
-        val loadingMode: Mode = Mode.IDLE,
+        val loadingMode: Mode = Mode.LOADING,
         val exception: Throwable? = null
     ) : StateUi, Parcelable
 
