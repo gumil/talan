@@ -3,7 +3,7 @@ object App {
      * This is currently being used in app.gradle.kts
      */
     @field:Suppress("MemberVisibilityCanBePrivate")
-    const val compose = "1.0.0-alpha06"
+    const val compose = "1.0.0-alpha07"
 
     val plugins = listOf(
         "com.android.application",
